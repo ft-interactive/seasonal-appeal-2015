@@ -1,0 +1,10 @@
+{
+  "name": "seasonal-appeal-2015",
+  "private": true,
+  "dependencies": {
+    "n-normalize": "~1.0.1",
+    "o-colors": ">=2.5.0 <4",
+    "o-fonts": "~1.6.4",
+    "sass-mq": "~3.2.4"
+  }
+}

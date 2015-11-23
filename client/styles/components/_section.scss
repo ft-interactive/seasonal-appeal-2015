@@ -1,0 +1,63 @@
+.section {
+  position: relative;
+  color: #e7e8e7;
+}
+
+.section__cover {}
+
+.section__wrapper {
+  padding: 20px 20px 40px;
+
+  @include mq('medium') {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @include mq('large') {
+    padding: 30px 40px 60px;
+  }
+}
+
+.section__share {}
+
+.section__content {
+  font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
+}
+
+.section__heading {}
+
+.section__cta {}
+
+.section--introduction {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.section--story {
+  outline: 20px solid;
+}
+
+.section--nigeria {
+  outline-color: rgba(#051e39, 0.5);
+  background: #051e39;
+}
+
+.section--china {
+  outline-color: rgba(#29281e, 0.5);
+  background: #29281e;
+}
+
+.section--nepal {
+  outline-color: rgba(#3e0d3e, 0.5);
+  background: #3e0d3e;
+}
+
+.section--united-kingdom {
+  outline-color: rgba(#358182, 0.5);
+  background: #358182;
+}
+
+.section--brazil {
+  outline-color: rgba(#0b1e0f, 0.5);
+  background: #0b1e0f;
+}

@@ -1,0 +1,25 @@
+%layout-margin {
+  @include layout-margin('small');
+
+  @include mq($from: 'medium') {
+    @include layout-margin('medium');
+  }
+
+  @include mq($from: 'large') {
+    @include layout-margin('large');
+  }
+
+}
+
+%layout-padding {
+  @include layout-padding('small');
+
+  @include mq($from: 'medium') {
+    @include layout-padding('medium');
+  }
+
+  @include mq($from: 'large') {
+    @include layout-padding('large');
+  }
+
+}

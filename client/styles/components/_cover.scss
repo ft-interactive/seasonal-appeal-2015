@@ -1,0 +1,9 @@
+.cover {
+  height: 100vh;
+}
+
+.cover__content {
+  @include mq('medium') {
+    position: fixed;
+  }
+}

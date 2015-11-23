@@ -1,0 +1,44 @@
+.header {
+  @extend %layout-padding;
+  white-space: nowrap;
+}
+
+.header__logo {
+  float: left;
+  margin-right: 12px;
+
+  @include mq('medium') {
+    margin-right: 20px;
+  }
+}
+
+.header__logo--icon {
+  @include mq('medium') {
+    display: none;
+  }
+}
+
+.header__logo--masthead {
+  display: none;
+
+  @include mq('medium') {
+    display: block;
+  }
+}
+
+.header__tagline {
+  margin: 0;
+  text-transform: uppercase;
+  // Match logo size
+  line-height: 24px;
+
+  @include mq('medium') {
+    // Match logo size
+    line-height: 18px;
+
+    &::before {
+      content: '|';
+      margin-right: 20px;
+    }
+  }
+}
