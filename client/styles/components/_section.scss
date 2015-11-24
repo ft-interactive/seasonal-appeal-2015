@@ -10,6 +10,7 @@
 .section__cover {}
 
 .section__wrapper {
+  box-sizing: border-box;
   padding: 20px 20px 40px;
 
   @include mq('medium') {
@@ -33,7 +34,12 @@
 .section__cta {}
 
 .section--introduction {
+  @extend %cover;
   text-align: center;
+
+  .section__wrapper {
+    @extend %cover-content;
+  }
 }
 
 .section--story {
