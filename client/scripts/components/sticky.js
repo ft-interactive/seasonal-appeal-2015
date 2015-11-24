@@ -7,7 +7,7 @@ class Sticky {
 
   constructor(target) {
     this.target = target;
-    this.parent = target.parentNode;
+    this.parent = target.offsetParent || target.parentNode;
 
     this._onScrollStartCb = this._onScrollStart.bind(this);
     this._onScrollCb = throttle(this._onScroll.bind(this), 10);
@@ -32,6 +32,10 @@ class Sticky {
     this.target.classList.toggle('is-bottom', isBottom);
   }
 
+  isSticky() {
+    return this.target.classList.contains('is-sticky');
+  }
+
   _onScrollStart() {
     if (!this._minHeight()) return;
 
@@ -42,14 +46,14 @@ class Sticky {
   }
 
   _onScroll() {
-    if (this.target.classList.contains('is-sticky')) {
+    if (this.isSticky()) {
       if (this._boundaryTopReached()) {
         this.unstick();
       }
-      if (this._boundaryReachedBottom()) {
+      if (this._boundaryBottomReached()) {
         this.unstick(true);
       }
-    } else if (!this._boundaryTopReached() && !this._boundaryReachedBottom()) {
+    } else if (!this._boundaryTopReached() && !this._boundaryBottomReached()) {
       this.stick();
     }
   }
@@ -62,7 +66,9 @@ class Sticky {
   }
 
   _onResize() {
-    if (!this.target.classList.contains('is-sticky')) return;
+    if (!this.isSticky()) {
+      return;
+    }
 
     if (!this._minHeight()) {
       this.unstick();
@@ -84,7 +90,7 @@ class Sticky {
     return parentOffsetTop > 0;
   }
 
-  _boundaryReachedBottom() {
+  _boundaryBottomReached() {
     let targetHeight = this.target.offsetHeight;
     let parentOffsetBottom = this.parent.getBoundingClientRect().bottom;
 

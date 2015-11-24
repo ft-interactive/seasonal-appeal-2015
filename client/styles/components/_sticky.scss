@@ -3,27 +3,29 @@
 }
 
 .js-sticky-thing {
+  .core & {
+    display: none;
+  }
 
   // Keep top/bottom positioning as 0 and use padding to offset any contents.
   // If an alternative top/bottom position is required then the JS must be
   // to be updated to handle these offsets (which is _a lot_ more complex).
 
-  position: absolute;
-  top: 0;
-  right: 20px;
-  overflow: hidden;
+  .enhanced & {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 10;
+    overflow: hidden;
 
-  .core & {
-    display: none;
-  }
+    &.is-sticky {
+      position: fixed;
+    }
 
-  &.is-sticky {
-    position: fixed;
-  }
-
-  &.is-bottom {
-    top: auto;
-    bottom: 0;
+    &.is-bottom {
+      top: auto;
+      bottom: 0;
+    }
   }
 
 }
