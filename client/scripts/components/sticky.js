@@ -1,25 +1,15 @@
 'use strict';
 
-import debounce from '../utils/debounce';
-import throttle from '../utils/throttle';
+import ScrollComponent from './scroll-component';
 
-class Sticky {
+class Sticky extends ScrollComponent {
 
   constructor(target) {
-    this.target = target;
-    this.parent = target.offsetParent || target.parentNode;
+    super(target);
 
-    this._onScrollStartCb = this._onScrollStart.bind(this);
-    this._onScrollCb = throttle(this._onScroll.bind(this), 10);
-    this._onScrollEndCb = debounce(this._onScrollEnd.bind(this), 100);
+    this.parent = target.offsetParent;
 
-    this.reset();
-
-    window.addEventListener('resize', debounce(this._onResize.bind(this), 100), false);
-  }
-
-  reset() {
-    window.addEventListener('scroll', this._onScrollStartCb, false);
+    super.init();
   }
 
   stick() {
@@ -36,53 +26,17 @@ class Sticky {
     return this.target.classList.contains('is-sticky');
   }
 
-  _onScrollStart() {
-    if (!this._minHeight()) return;
+  _check() {
+    let boundaryTop = this._boundaryTopReached();
+    let boundaryBottom = this._boundaryBottomReached();
 
-    window.removeEventListener('scroll', this._onScrollStartCb, false);
-
-    window.addEventListener('scroll', this._onScrollCb, false);
-    window.addEventListener('scroll', this._onScrollEndCb, false);
-  }
-
-  _onScroll() {
-    if (this.isSticky()) {
-      if (this._boundaryTopReached()) {
-        this.unstick();
-      }
-      if (this._boundaryBottomReached()) {
-        this.unstick(true);
-      }
-    } else if (!this._boundaryTopReached() && !this._boundaryBottomReached()) {
+    if (boundaryTop) {
+      this.unstick();
+    } else if (boundaryBottom) {
+      this.unstick(true);
+    } else {
       this.stick();
     }
-  }
-
-  _onScrollEnd() {
-    window.removeEventListener('scroll', this._onScrollCb, false);
-    window.removeEventListener('scroll', this._onScrollEndCb, false);
-
-    this.reset();
-  }
-
-  _onResize() {
-    if (!this.isSticky()) {
-      return;
-    }
-
-    if (!this._minHeight()) {
-      this.unstick();
-    } else {
-      this._onScroll();
-    }
-  }
-
-  _minHeight() {
-    let parentHeight = this.parent.clientHeight;
-    let targetHeight = this.target.offsetHeight;
-
-    // Tests if both the container and window have space to scroll into.
-    return targetHeight < window.innerHeight && targetHeight < parentHeight;
   }
 
   _boundaryTopReached() {

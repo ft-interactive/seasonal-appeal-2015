@@ -14,9 +14,6 @@
   .enhanced & {
     position: absolute;
     top: 0;
-    right: 20px;
-    z-index: 10;
-    overflow: hidden;
 
     &.is-sticky {
       position: fixed;

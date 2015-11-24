@@ -1,16 +1,15 @@
 'use strict';
 
 import Sticky from './components/sticky';
-import Curtain from './components/curtain';
+import EnterViewport from './components/enter-viewport';
 
 document.addEventListener('DOMContentLoaded', () => {
   const ENHANCIFY_AT = 760;
 
-  if (window.innerWidth >= ENHANCIFY_AT) {
-    // Sticky section navigation
-    new Sticky(document.querySelector('.js-sticky-thing'));
+  new EnterViewport(document.querySelectorAll('.js-enter-viewport'));
 
-    // Opening cover section
-    new Curtain(document.querySelector('.js-curtain'));
+  if (window.innerWidth >= ENHANCIFY_AT) {
+    let stickyElements = document.querySelectorAll('.js-sticky-thing');
+    Array.prototype.forEach.call(stickyElements, element => new Sticky(element));
   }
 });

@@ -1,6 +1,10 @@
 .section {
   position: relative;
   color: #e7e8e7;
+
+  &.in-viewport {
+    // background: yellow !important;
+  }
 }
 
 .section__cover {}
@@ -30,7 +34,6 @@
 
 .section--introduction {
   text-align: center;
-  background: rgba(0, 0, 0, 0.85);
 }
 
 .section--story {

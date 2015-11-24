@@ -1,0 +1,42 @@
+.partition--header {
+  .enhanced & {
+
+    @include mq('medium') {
+      height: 200vh;
+      margin-bottom: -100vh;
+
+      // Well...
+      & + * > section:first-of-type {
+        height: 100vh;
+      }
+    }
+
+  }
+}
+
+.partition__cover {
+  .enhanced & {
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    background: #b1493f url(http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg);
+    background-size: 100%;
+  }
+}
+
+.partition__mask {
+  .enhanced & {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 35%,
+      rgba(0, 0, 0, 0.875) 100%
+    );
+  }
+}

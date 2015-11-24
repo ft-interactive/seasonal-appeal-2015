@@ -1,3 +1,4 @@
+
 @charset 'utf-8';
 
 @import 'o-fonts/main';
@@ -19,9 +20,11 @@
 @import 'base/typography';
 @import 'base/utility';
 
-@import 'components/curtain';
-@import 'components/header';
 @import 'components/hero';
 @import 'components/interstitial';
+@import 'components/masthead';
+@import 'components/pagination';
 @import 'components/section';
 @import 'components/sticky';
+
+@import 'layout/partition';

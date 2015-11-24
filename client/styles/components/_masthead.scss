@@ -1,9 +1,9 @@
-.header {
+.masthead {
   @extend %layout-padding;
   white-space: nowrap;
 }
 
-.header__logo {
+.masthead__logo {
   float: left;
   margin-right: 12px;
 
@@ -12,13 +12,13 @@
   }
 }
 
-.header__logo--icon {
+.masthead__logo--icon {
   @include mq('medium') {
     display: none;
   }
 }
 
-.header__logo--masthead {
+.masthead__logo--full {
   display: none;
 
   @include mq('medium') {
@@ -26,7 +26,7 @@
   }
 }
 
-.header__tagline {
+.masthead__tagline {
   margin: 0;
   text-transform: uppercase;
   // Match logo size

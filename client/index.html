@@ -24,77 +24,80 @@
   </head>
   <body>
 
-    <!-- curtain -->
-    <div class="curtain js-curtain">
-      <div class="curtain__content">
+    <!-- header -->
+    <header class="partition partition--header js-sticky-parent">
 
-        <!-- header -->
-        <header class="header" role="banner">
-          <a href="http://www.ft.com/">
-            <img
-              width="24"
-              height="24"
-              alt="Financial Times"
-              class="header__logo header__logo--icon"
-              src="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft?source=appeal">
-            <img
-              width="220"
-              height="18"
-              alt="Financial Times"
-              class="header__logo header__logo--masthead"
-              src="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft-masthead?source=appeal&amp;size=220"
-              srcset="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft-masthead?source=appeal">
+      <!-- curtain -->
+      <div class="partition__cover js-sticky-thing"></div>
+      <div class="partition__mask"></div>
+      <!-- end curtain -->
+
+      <!-- masthead -->
+      <div class="masthead" role="banner">
+        <a href="http://www.ft.com/">
+          <img
+            width="24"
+            height="24"
+            alt="Financial Times"
+            class="masthead__logo masthead__logo--icon"
+            src="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft?source=appeal">
+          <img
+            width="220"
+            height="18"
+            alt="Financial Times"
+            class="masthead__logo masthead__logo--full"
+            src="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft-masthead?source=appeal&amp;size=220"
+            srcset="//image.webservices.ft.com/v1/images/raw/fticon:brand-ft-masthead?source=appeal">
+        </a>
+        <p class="masthead__tagline t--3">Seasonal Appeal 2015</p>
+      </div>
+      <!-- end masthead -->
+
+      <!-- hero -->
+      <div class="hero">
+
+        <div class="hero__content">
+          <h1 class="hero__heading t--super">
+            Modern-day<br>
+            slavery
+          </h1>
+          <p class="hero__subtitle t--1">
+            How human trafficking<br>
+            spans the world
+          </p>
+          <p class="hero__credit t--4">
+            Illustrations by Michelle Thompson<br>
+            Cover photo by Steve McCurry/<abbr title="International Labour Organization">ILO</abbr>
+          </p>
+        </div>
+
+        <div class="hero__share">
+          <p class="share__description u-hidden">
+            Share this page
+          </p>
+          <a href="https://www.twitter.com/intent/tweet?url=&amp;text=">
+            <span class="share__icon icon icon--twitter">
+              <span class="u-hidden">Share on Twitter</span>
+            </span>
           </a>
-          <p class="header__tagline t--3">Seasonal Appeal 2015</p>
-        </header>
-        <!-- end header -->
-
-        <!-- hero -->
-        <section class="hero">
-
-          <div class="hero__content">
-            <h1 class="hero__heading t--super">
-              Modern-day<br>
-              slavery
-            </h1>
-            <p class="hero__subtitle t--1">
-              How human trafficking<br>
-              spans the world
-            </p>
-            <p class="hero__credit t--4">
-              Illustrations by Michelle Thompson<br>
-              Cover photo by Steve McCurry/<abbr title="International Labour Organization">ILO</abbr>
-            </p>
-          </div>
-
-          <div class="hero__share">
-            <p class="share__description u-hidden">
-              Share this page
-            </p>
-            <a href="https://www.twitter.com/intent/tweet?url=&amp;text=">
-              <span class="share__icon icon icon--twitter">
-                <span class="u-hidden">Share on Twitter</span>
-              </span>
-            </a>
-            <a href="https://www.facebook.com/sharer.php?u=&amp;text=">
-              <span class="share__icon icon icon--facebook">
-                <span class="u-hidden">Share on Facebook</span>
-              </span>
-            </a>
-          </div>
-
-        </section>
-        <!-- end hero -->
+          <a href="https://www.facebook.com/sharer.php?u=&amp;text=">
+            <span class="share__icon icon icon--facebook">
+              <span class="u-hidden">Share on Facebook</span>
+            </span>
+          </a>
+        </div>
 
       </div>
-    </div>
-    <!-- end curtain -->
+      <!-- end hero -->
 
-    <main class="js-sticky-parent js-curtain-wrapper" role="main">
+    </header>
+    <!-- end header -->
+
+    <main class="partition partition--main js-sticky-parent" role="main">
 
       <!-- navigation -->
-      <nav class="js-sticky-thing" role="navigation" aria-label="Page navigation">
-        <ol class="pagination">
+      <nav class="pagination js-sticky-thing" role="navigation" aria-label="Page navigation">
+        <ol class="pagination__list">
           <li class="pagination__item">
             <a class="pagination__button" href="#introduction">
               <span class="u-hidden">Section 1, Introduction</span>
@@ -130,7 +133,7 @@
       <!-- end navigation -->
 
       <!-- introduction -->
-      <section class="section section--introduction" id="introduction">
+      <section class="section section--introduction js-enter-viewport" id="introduction">
 
         <div class="section__wrapper">
 
@@ -168,7 +171,7 @@
       <!-- end introduction -->
 
       <!-- nigeria -->
-      <section class="section section--story section--nigeria" id="nigeria">
+      <section class="section section--story section--nigeria js-enter-viewport" id="nigeria">
 
         <div class="section__cover"></div>
 
@@ -209,7 +212,7 @@
       <!-- end nigeria -->
 
       <!-- china -->
-      <section class="section section--story section--china" id="china">
+      <section class="section section--story section--china js-enter-viewport" id="china">
 
         <div class="section__cover"></div>
 
@@ -255,7 +258,7 @@
       <!-- end china -->
 
       <!-- nepal -->
-      <section class="section section--story section--nepal" id="nepal">
+      <section class="section section--story section--nepal js-enter-viewport" id="nepal">
 
         <div class="section__cover"></div>
 
@@ -304,7 +307,7 @@
       <!-- end interstitial -->
 
       <!-- united-kingdom -->
-      <section class="section section--story section--united-kingdom" id="united-kingdom">
+      <section class="section section--story section--united-kingdom js-enter-viewport" id="united-kingdom">
 
         <div class="section__cover"></div>
 
@@ -345,7 +348,7 @@
       <!-- end united-kingdom -->
 
       <!-- brazil -->
-      <section class="section section--story section--brazil" id="brazil">
+      <section class="section section--story section--brazil js-enter-viewport" id="brazil">
 
         <div class="section__cover"></div>
 
