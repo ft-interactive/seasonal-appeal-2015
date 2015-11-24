@@ -1,4 +1,14 @@
-.hero {}
+.hero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  @include mq('medium') {
+    position: static;
+    width: auto;
+  }
+}
 
 .hero__content {
   text-align: center;

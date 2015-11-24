@@ -1,5 +1,6 @@
 'use strict';
 
+import fastdom from 'fastdom';
 import debounce from '../utils/debounce';
 
 class ScrollComponent {
@@ -9,55 +10,34 @@ class ScrollComponent {
   }
 
   init() {
-    this._onScrollStartCb = this._onScrollStart.bind(this);
-    this._onScrollEndCb = debounce(this._onScrollEnd.bind(this), 100);
+    this.onMoveCallback = this.onMove.bind(this);
+    this.onResizeCallback = debounce(this.onMoveCallback, 100);
 
-    window.addEventListener('resize', debounce(this._onResize.bind(this), 100), false);
-    window.addEventListener('scroll', this._onScrollStartCb, false);
+    window.addEventListener('resize', this.onResizeCallback, false);
+    window.addEventListener('touchmove', this.onMoveCallback, false);
+    window.addEventListener('scroll', this.onMoveCallback, false);
 
-    this._check();
+    this.checkPosition();
   }
 
-  _onScrollStart() {
-    window.removeEventListener('scroll', this._onScrollStartCb, false);
-    window.addEventListener('scroll', this._onScrollEndCb, false);
-
-    this._startLoop();
+  teardown() {
+    window.removeEventListener('resize', this.onResizeCallback, false);
+    window.removeEventListener('touchmove', this.onMoveCallback, false);
+    window.removeEventListener('scroll', this.onMoveCallback, false);
   }
 
-  _onScrollEnd() {
-    this._endLoop();
-
-    window.addEventListener('scroll', this._onScrollStartCb, false);
-    window.removeEventListener('scroll', this._onScrollEndCb, false);
-  }
-
-  _onResize() {
-    this._check();
-  }
-
-  _startLoop() {
+  onMove() {
     if (this._loopFrameId) {
-      window.cancelAnimationFrame(this._loopFrameId);
+      return;
     }
 
-    this._loopFrameId = window.requestAnimationFrame(() => {
-      let currentScrollPosition = window.pageYOffset;
-
-      if (this._lastScrollPosition !== currentScrollPosition) {
-        this._lastScrollPosition = currentScrollPosition;
-        this._check();
-      }
-
-      this._startLoop();
+    this._loopFrameId = fastdom.read(() => {
+      this.checkPosition();
+      this._loopFrameId = null;
     });
   }
 
-  _endLoop() {
-    window.cancelAnimationFrame(this._loopFrameId);
-  }
-
-  _check() {
+  checkPosition() {
     throw Error('Not implemented');
   }
 

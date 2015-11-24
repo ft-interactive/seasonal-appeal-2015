@@ -1,15 +1,16 @@
 'use strict';
 
-import Sticky from './components/sticky';
-import EnterViewport from './components/enter-viewport';
+import ConstrainedSticky from './components/constrained-sticky';
+import WithinViewport from './components/within-viewport';
 
 document.addEventListener('DOMContentLoaded', () => {
   const ENHANCIFY_AT = 760;
 
-  new EnterViewport(document.querySelectorAll('.js-enter-viewport'));
+  let withinViewportEls = document.querySelectorAll('.js-within-viewport');
+  Array.prototype.forEach.call(withinViewportEls, el => new WithinViewport(el));
 
   if (window.innerWidth >= ENHANCIFY_AT) {
-    let stickyElements = document.querySelectorAll('.js-sticky-thing');
-    Array.prototype.forEach.call(stickyElements, element => new Sticky(element));
+    let constainedStickyEls = document.querySelectorAll('.js-sticky-thing');
+    Array.prototype.forEach.call(constainedStickyEls, el => new ConstrainedSticky(el));
   }
 });
