@@ -1,6 +1,17 @@
 .pagination {
-  right: 20px;
-  z-index: 10;
+  display: none;
+
+  .core & {
+    display: none;
+  }
+
+  .enhanced & {
+    @include mq('medium') {
+      display: block;
+      right: 20px;
+      z-index: 10;
+    }
+  }
 }
 
 .pagination__list {

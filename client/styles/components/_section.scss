@@ -35,11 +35,21 @@
 
 .section--introduction {
   @extend %cover;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+
+  .core & {
+    background: #222222;
+  }
 
   .section__wrapper {
     @extend %cover-content;
+    display: table;
+  }
+
+  .section__content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
 }
 

@@ -2,57 +2,68 @@
 
 import debounce from '../utils/debounce';
 
-let initialised = false;
-
 let lastFrameId = null;
 
 let watchers = [];
 
-function onMove() {
-  if (lastFrameId) {
-    return;
-  }
-
+const onResize = debounce(function () {
   notify();
-  lastFrameId = null;
+}, 100);
+
+const onScrollEnd = debounce(function () {
+  addListeners();
+  stopAnimationLoop();
+  window.removeEventListener('scroll', onScrollEnd, false);
+}, 100);
+
+function onScrollStart() {
+  removeListeners();
+  startAnimationLoop();
+  window.addEventListener('scroll', onScrollEnd, false);
 }
 
-const onResize = debounce(onMove, 100);
+function startAnimationLoop() {
+  lastFrameId = window.requestAnimationFrame(() => {
+    notify();
+    startAnimationLoop();
+  });
+}
+
+function stopAnimationLoop() {
+  if (lastFrameId) {
+    window.cancelAnimationFrame(lastFrameId);
+    lastFrameId = null;
+  }
+}
 
 function addListeners() {
   window.addEventListener('resize', onResize, false);
-  window.addEventListener('touchmove', onMove, false);
-  window.addEventListener('scroll', onMove, false);
-
-  initialised = true;
+  window.addEventListener('touchmove', onScrollStart, false);
+  window.addEventListener('scroll', onScrollStart, false);
 }
 
 function removeListeners() {
   window.removeEventListener('resize', onResize, false);
-  window.removeEventListener('touchmove', onMove, false);
-  window.removeEventListener('scroll', onMove, false);
-
-  initialised = false;
+  window.removeEventListener('touchmove', onScrollStart, false);
+  window.removeEventListener('scroll', onScrollStart, false);
 }
 
 function notify() {
+  // Faster than array iteration methods
   for (let i = 0, len = watchers.length; i < len; i++) {
-    watchers[i]();
+    if (watchers[i]) {
+      watchers[i]();
+    }
   }
 }
 
 export function addWatcher(callback) {
-  if (!initialised) {
-    addListeners();
-  }
-
   return watchers.push(callback);
 }
 
 export function removeWatcher(index) {
-  watchers.splice(index, 1);
-
-  if (!watchers.length) {
-    removeListeners();
-  }
+  // Fill space so that references to other indexes don't need to change.
+  watchers.splice(index, 1, null);
 }
+
+addListeners();

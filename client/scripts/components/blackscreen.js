@@ -1,28 +1,30 @@
 'use strict';
 
 import fastdom from 'fastdom';
-import ScrollComponent from './scroll-component';
+import {addWatcher} from '../utils/scroll-watcher';
 
-class Blackscreen extends ScrollComponent {
+class Blackscreen {
 
   constructor(target) {
-    super(target);
-    super.init();
+    this.target = target;
+    this.watcherId = addWatcher(this.checkPosition.bind(this));
+
+    this.checkPosition();
   }
 
   checkPosition() {
-    fastdom.read(() => {
-      let targetOffset = this.target.getBoundingClientRect();
-      let viewportHeight = window.innerHeight;
+    let viewportHeight = window.innerHeight;
+    let targetBoundingBox = this.target.getBoundingClientRect();
 
-      if (targetOffset.top > viewportHeight || targetOffset.bottom < 0) {
-        return;
-      }
+    if (targetBoundingBox.top > viewportHeight || targetBoundingBox.bottom < 0) {
+      return;
+    }
 
-      let ratio = (1 / viewportHeight);
-      let percent = ratio * (targetOffset.height - Math.abs(targetOffset.bottom));
+    let ratio = (1 / viewportHeight);
+    let value = (targetBoundingBox.height - Math.abs(targetBoundingBox.bottom));
 
-      this.target.style.opacity = percent.toFixed(2);
+    fastdom.write(() => {
+      this.target.style.opacity = (ratio * value).toFixed(2);
     });
   }
 

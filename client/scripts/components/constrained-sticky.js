@@ -1,47 +1,41 @@
 'use strict';
 
 import fastdom from 'fastdom';
-import ScrollComponent from './scroll-component';
+import {addWatcher} from '../utils/scroll-watcher';
 
-class Sticky extends ScrollComponent {
+class ConstrainedSticky {
 
   constructor(target) {
-    super(target);
+    this.target = target;
+    this.watcherId = addWatcher(this.checkPosition.bind(this));
 
-    this.parent = target.offsetParent;
-
-    super.init();
+    this.checkPosition();
   }
 
   checkPosition() {
-    fastdom.read(() => {
-      let boundaryTop = this.boundaryTopReached();
-      let boundaryBottom = this.boundaryBottomReached();
+    let parent = this.target.offsetParent;
 
-      fastdom.write(() => {
-        if (boundaryTop || boundaryBottom) {
-          this.target.classList.remove('is-sticky');
-          this.target.classList.toggle('is-bottom', boundaryBottom);
-        } else {
-          this.target.classList.add('is-sticky');
-          this.target.classList.remove('is-bottom');
-        }
-      });
-    });
-  }
+    if (!parent) {
+      return;
+    }
 
-  boundaryTopReached() {
-    let parentOffsetTop = this.parent.getBoundingClientRect().top;
-    return parentOffsetTop > 0;
-  }
-
-  boundaryBottomReached() {
     let targetHeight = this.target.offsetHeight;
-    let parentOffsetBottom = this.parent.getBoundingClientRect().bottom;
+    let parentBoundingBox = parent.getBoundingClientRect();
 
-    return (parentOffsetBottom - targetHeight) <= 0;
+    let boundaryTop = (parentBoundingBox.top > 0);
+    let boundaryBottom = ((parentBoundingBox.bottom - targetHeight) <= 0);
+
+    fastdom.write(() => {
+      if (boundaryTop || boundaryBottom) {
+        this.target.classList.remove('is-sticky');
+        this.target.classList.toggle('is-bottom', boundaryBottom);
+      } else {
+        this.target.classList.add('is-sticky');
+        this.target.classList.remove('is-bottom');
+      }
+    });
   }
 
 }
 
-export default Sticky;
+export default ConstrainedSticky;
