@@ -35,14 +35,10 @@
 
 .section--introduction {
   @extend %cover;
-  // background: #333333;
-  // background: rgba(0, 0, 0, 0.85);
+  background: #333333;
 
-  // When fancy stuff becomes active
   .enhanced & {
-    @include mq('medium') {
-      background: none;
-    }
+    background: none;
   }
 
   .section__wrapper {

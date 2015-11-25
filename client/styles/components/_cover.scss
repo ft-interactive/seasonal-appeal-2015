@@ -1,5 +1,6 @@
 %cover {
   position: relative;
+  height: 640px;
   height: 100vh;
 }
 
@@ -39,24 +40,15 @@
 }
 
 .cover__image {
-  // No background-attachment: fixed on iOS
-  position: fixed;
+  position: absolute;
   z-index: -1;
   width: 100%;
   height: 100%;
   // Allow for browser chrome
   height: calc(100% + 60px);
-  background-position: center top;
-
-  // container size may change if browser chrome is shown/hidden so cover et al
-  // are no good =()
-  @media screen and (orientation: portrait) {
-    background-size: 100% auto;
-  }
-
-  @media screen and (orientation: landscape) {
-    background-size: auto 100vh;
-  }
+  background: center top no-repeat;
+  // container size may change if browser chrome is shown/hidden =(
+  background-size: cover;
 
   // image-set() isn't widely available yet
   @include mq($until: 'large', $and: '(orientation: portrait)') {
@@ -74,4 +66,14 @@
   @include mq($from: 'medium', $and: '(orientation: landscape)') {
     background-image: url('/images/hero-landscape-1600.jpg');
   }
+
+  .core & {
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/hero-landscape-960.jpg', sizingMethod='scale')";
+  }
+
+  .enhanced & {
+    // No background-attachment: fixed on iOS
+    position: fixed;
+  }
+
 }

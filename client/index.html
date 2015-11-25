@@ -19,7 +19,11 @@
     <!-- endsmoosh -->
 
     <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <!--[if (gt IE 9) | (IEMobile)]><!--><link rel="stylesheet" href="styles/main.css"><!--<![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main-ie.css -->
+    <!--[if (lte IE 9) & (!IEMobile)]><link rel="stylesheet" href="styles/main-ie.css"><![endif]-->
     <!-- endbuild -->
   </head>
   <body>
