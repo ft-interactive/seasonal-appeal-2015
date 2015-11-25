@@ -1,56 +1,71 @@
 'use strict';
 
-import {subscribe} from 'minpubsub';
+import scrollMonitor from 'scrollMonitor';
 
 const targetActiveClass = 'is-active';
 const linkActiveClass = 'is-selected';
 
 class Pagination {
 
-  constructor(target) {
-    this.target = target;
-    this.links = Array.prototype.slice.call(target.querySelectorAll('a'));
+  constructor() {
+    this.pagination = document.querySelector('.js-pagination');
+    this.paginationLinks = this.pagination.querySelectorAll('.js-pagination-link');
+    this.main = document.querySelector('.js-main');
+    this.mainSections = Array.prototype.map.call(this.paginationLinks, link => document.querySelector(link.hash));
 
-    subscribe('section/in-view', this.activate.bind(this));
-    subscribe('section/out-of-view', this.deactivate.bind(this));
-  }
+    this.mainMonitor = (() => {
+      let monitor = scrollMonitor.create(this.main, {
+        bottom: -100,
+        top: -100
+      });
 
-  findLink(element) {
-    return this.links.find(link => link.hash.replace('#', '') === element.id);
+      monitor.enterViewport(this.checkIfEnabled.bind(this));
+      monitor.exitViewport(this.checkIfDisabled.bind(this));
+
+      return monitor;
+    })();
+
+    this.mainSectionsMonitors = Array.prototype.map.call(this.mainSections, (section, index) => {
+      let monitor = scrollMonitor.create(section, {
+        bottom: -200,
+        top: -200
+      });
+
+      monitor.enterViewport(this.activateLink.bind(this, index));
+      monitor.exitViewport(this.deactivateLink.bind(this, index));
+
+      return monitor;
+    });
   }
 
   checkIfEnabled() {
-    if (!this.target.classList.contains(targetActiveClass)) {
-      this.target.classList.add(targetActiveClass);
+    if (!this.pagination.classList.contains(targetActiveClass)) {
+      this.pagination.classList.add(targetActiveClass);
     }
   }
 
   checkIfDisabled() {
-    if (!this.current) {
-      this.target.classList.remove(targetActiveClass);
+    if (this.pagination.classList.contains(targetActiveClass)) {
+      this.pagination.classList.remove(targetActiveClass);
     }
   }
 
-  activate(element) {
-    this.findLink(element).classList.add(linkActiveClass);
+  activateLink(index) {
+    this.paginationLinks[index].classList.add(linkActiveClass);
 
-    if (this.current) {
-      this.findLink(this.current).classList.remove(linkActiveClass);
+    if (this.activeIndex) {
+      this.paginationLinks[this.activeIndex].classList.remove(linkActiveClass);
     }
 
-    this.current = element;
-
-    this.checkIfEnabled();
+    this.activeIndex = index;
   }
 
-  deactivate(element) {
-    this.findLink(element).classList.remove(linkActiveClass);
+  deactivateLink(index) {
+    this.paginationLinks[index].classList.remove(linkActiveClass);
 
-    if (element === this.current) {
-      this.current = null;
+    if (index === this.activeIndex) {
+      this.activeIndex = null;
     }
-
-    this.checkIfDisabled();
   }
 
 }
