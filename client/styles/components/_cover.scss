@@ -3,11 +3,6 @@
   height: 100vh;
 }
 
-%cover-overlap {
-  padding-bottom: 100vh;
-  margin-bottom: -100vh;
-}
-
 %cover-content {
   position: absolute;
   top: 0;
@@ -18,48 +13,19 @@
 
 .cover {
   @extend %cover;
-  background: #362f2d;
 
   .enhanced & {
-    @extend %cover-overlap;
-  }
-
-}
-
-.cover__image {
-  @extend %cover;
-  left: 0;
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-
-  // image-set() isn't widely available yet
-  @include mq($until: 'medium', $and: '(orientation: portrait)') {
-    background-image: url('/images/hero-portrait-640.jpg');
-  }
-
-  @include mq($from: 'medium', $and: '(orientation: portrait)') {
-    background-image: url('/images/hero-portrait-1280.jpg');
-  }
-
-  @include mq($until: 'medium', $and: '(orientation: landscape)') {
-    background-image: url('/images/hero-landscape-960.jpg');
-  }
-
-  @include mq($from: 'medium', $and: '(orientation: landscape)') {
-    background-image: url('/images/hero-landscape-1600.jpg');
+    padding-bottom: 100vh;
+    margin-bottom: -100vh;
   }
 }
 
-.cover__mask {
+.cover__image__mask {
   .enhanced & {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    @extend %cover-content;
+    background: rgba(0, 0, 0, 0.75);
     opacity: 0;
+    transition: opacity 0.1s;
     will-change: opacity;
   }
 }
@@ -69,5 +35,43 @@
 
   .enhanced & {
     height: 50%;
+  }
+}
+
+.cover__image {
+  // No background-attachment: fixed on iOS
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  // Allow for browser chrome
+  height: calc(100% + 60px);
+  background-position: center top;
+
+  // container size may change if browser chrome is shown/hidden so cover et al
+  // are no good =()
+  @media screen and (orientation: portrait) {
+    background-size: 100% auto;
+  }
+
+  @media screen and (orientation: landscape) {
+    background-size: auto 100vh;
+  }
+
+  // image-set() isn't widely available yet
+  @include mq($until: 'large', $and: '(orientation: portrait)') {
+    background-image: url('/images/hero-portrait-480.jpg');
+  }
+
+  @include mq($from: 'medium', $and: '(orientation: portrait)') {
+    background-image: url('/images/hero-portrait-960.jpg');
+  }
+
+  @include mq($until: 'medium', $and: '(orientation: landscape)') {
+    background-image: url('/images/hero-landscape-960.jpg');
+  }
+
+  @include mq($from: 'medium', $and: '(orientation: landscape)') {
+    background-image: url('/images/hero-landscape-1600.jpg');
   }
 }

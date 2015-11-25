@@ -25,10 +25,11 @@
   <body>
 
     <!-- cover -->
-    <header class="cover js-sticky-parent">
+    <header class="cover">
 
-      <div class="cover__image js-sticky-thing"></div>
-      <div class="cover__mask js-blackscreen"></div>
+      <div class="cover__image">
+        <div class="cover__image__mask js-blackscreen"></div>
+      </div>
 
       <div class="cover__content">
 
@@ -95,44 +96,44 @@
     </header>
     <!-- end cover -->
 
-    <main class="partition partition--main js-sticky-parent" role="main">
+    <!-- navigation -->
+    <nav class="pagination js-pagination" role="navigation" aria-label="Page navigation">
+      <ol class="pagination__list">
+        <li class="pagination__item">
+          <a class="pagination__button" href="#introduction">
+            <span class="u-hidden">Section 1, Introduction</span>
+          </a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__button" href="#nigeria">
+            <span class="u-hidden">Section 2, Nigeria</span>
+          </a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__button" href="#china">
+            <span class="u-hidden">Section 3, China</span>
+          </a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__button" href="#nepal">
+            <span class="u-hidden">Section 4, Nepal</span>
+          </a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__button" href="#united-kingdom">
+            <span class="u-hidden">Section 5, United Kingdom</span>
+          </a>
+        </li>
+        <li class="pagination__item">
+          <a class="pagination__button" href="#brazil">
+            <span class="u-hidden">Section 6, Brazil</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <!-- end navigation -->
 
-      <!-- navigation -->
-      <nav class="pagination js-sticky-thing" role="navigation" aria-label="Page navigation">
-        <ol class="pagination__list">
-          <li class="pagination__item">
-            <a class="pagination__button" href="#introduction">
-              <span class="u-hidden">Section 1, Introduction</span>
-            </a>
-          </li>
-          <li class="pagination__item">
-            <a class="pagination__button" href="#nigeria">
-              <span class="u-hidden">Section 2, Nigeria</span>
-            </a>
-          </li>
-          <li class="pagination__item">
-            <a class="pagination__button" href="#china">
-              <span class="u-hidden">Section 3, China</span>
-            </a>
-          </li>
-          <li class="pagination__item">
-            <a class="pagination__button" href="#nepal">
-              <span class="u-hidden">Section 4, Nepal</span>
-            </a>
-          </li>
-          <li class="pagination__item">
-            <a class="pagination__button" href="#united-kingdom">
-              <span class="u-hidden">Section 5, United Kingdom</span>
-            </a>
-          </li>
-          <li class="pagination__item">
-            <a class="pagination__button" href="#brazil">
-              <span class="u-hidden">Section 6, Brazil</span>
-            </a>
-          </li>
-        </ol>
-      </nav>
-      <!-- end navigation -->
+    <main class="partition partition--main js-sticky-parent" role="main">
 
       <!-- introduction -->
       <section class="section section--introduction js-within-viewport" id="introduction">

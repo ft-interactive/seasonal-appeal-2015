@@ -13,18 +13,15 @@ class Blackscreen {
   }
 
   checkPosition() {
-    let viewportHeight = window.innerHeight;
-    let targetBoundingBox = this.target.getBoundingClientRect();
+    let percent = (() => {
+      let ratio = (1 / window.innerHeight);
+      let percentage = (ratio * window.pageYOffset);
 
-    if (targetBoundingBox.top > viewportHeight || targetBoundingBox.bottom < 0) {
-      return;
-    }
-
-    let ratio = (1 / viewportHeight);
-    let value = (targetBoundingBox.height - Math.abs(targetBoundingBox.bottom));
+      return Math.max(0, Math.min(percentage, 1));
+    })();
 
     fastdom.write(() => {
-      this.target.style.opacity = (ratio * value).toFixed(2);
+      this.target.style.opacity = percent.toFixed(2);
     });
   }
 
