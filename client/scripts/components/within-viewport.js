@@ -13,14 +13,16 @@ class WithinViewport extends ScrollComponent {
   }
 
   checkPosition() {
-    let boundingBox = this.target.getBoundingClientRect();
+    fastdom.read(() => {
+      let boundingBox = this.target.getBoundingClientRect();
 
-    if (boundingBox.top >= 0 && boundingBox.top < (window.innerHeight - THRESHOLD)) {
-      fastdom.write(() => {
-        this.target.classList.add('in-viewport');
-        this.teardown();
-      });
-    }
+      if (boundingBox.top >= 0 && boundingBox.top < (window.innerHeight - THRESHOLD)) {
+        fastdom.write(() => {
+          this.target.classList.add('in-viewport');
+          this.teardown();
+        });
+      }
+    });
   }
 
 }

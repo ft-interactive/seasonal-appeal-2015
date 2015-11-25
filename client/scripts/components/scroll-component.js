@@ -1,7 +1,6 @@
 'use strict';
 
-import fastdom from 'fastdom';
-import debounce from '../utils/debounce';
+import {addWatcher, removeWatcher} from '../utils/scroll-watcher';
 
 class ScrollComponent {
 
@@ -10,31 +9,15 @@ class ScrollComponent {
   }
 
   init() {
-    this.onMoveCallback = this.onMove.bind(this);
-    this.onResizeCallback = debounce(this.onMoveCallback, 100);
-
-    window.addEventListener('resize', this.onResizeCallback, false);
-    window.addEventListener('touchmove', this.onMoveCallback, false);
-    window.addEventListener('scroll', this.onMoveCallback, false);
-
+    this.callbackId = addWatcher(this.checkPosition.bind(this));
     this.checkPosition();
   }
 
   teardown() {
-    window.removeEventListener('resize', this.onResizeCallback, false);
-    window.removeEventListener('touchmove', this.onMoveCallback, false);
-    window.removeEventListener('scroll', this.onMoveCallback, false);
-  }
-
-  onMove() {
-    if (this._loopFrameId) {
-      return;
+    if (this.callbackId) {
+      removeWatcher(this.callbackId);
+      this.callbackId = null;
     }
-
-    this._loopFrameId = fastdom.read(() => {
-      this.checkPosition();
-      this._loopFrameId = null;
-    });
   }
 
   checkPosition() {

@@ -14,17 +14,19 @@ class Sticky extends ScrollComponent {
   }
 
   checkPosition() {
-    let boundaryTop = this.boundaryTopReached();
-    let boundaryBottom = this.boundaryBottomReached();
+    fastdom.read(() => {
+      let boundaryTop = this.boundaryTopReached();
+      let boundaryBottom = this.boundaryBottomReached();
 
-    fastdom.write(() => {
-      if (boundaryTop || boundaryBottom) {
-        this.target.classList.remove('is-sticky');
-        this.target.classList.toggle('is-bottom', boundaryBottom);
-      } else {
-        this.target.classList.add('is-sticky');
-        this.target.classList.remove('is-bottom');
-      }
+      fastdom.write(() => {
+        if (boundaryTop || boundaryBottom) {
+          this.target.classList.remove('is-sticky');
+          this.target.classList.toggle('is-bottom', boundaryBottom);
+        } else {
+          this.target.classList.add('is-sticky');
+          this.target.classList.remove('is-bottom');
+        }
+      });
     });
   }
 
