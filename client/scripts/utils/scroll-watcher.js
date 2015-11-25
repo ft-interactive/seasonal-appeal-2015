@@ -11,9 +11,9 @@ const onResize = debounce(function () {
 }, 100);
 
 const onScrollEnd = debounce(function () {
-  addListeners();
-  stopAnimationLoop();
   window.removeEventListener('scroll', onScrollEnd, false);
+  stopAnimationLoop();
+  addListeners();
 }, 100);
 
 function onScrollStart() {
@@ -62,7 +62,7 @@ export function addWatcher(callback) {
 }
 
 export function removeWatcher(index) {
-  // Fill space so that references to other indexes don't need to change.
+  // Fill the space so that references to other indexes don't need to change.
   watchers.splice(index, 1, null);
 }
 

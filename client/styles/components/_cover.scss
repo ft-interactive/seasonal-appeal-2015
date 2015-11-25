@@ -14,29 +14,10 @@
 
 .cover {
   @extend %cover;
-
-  .enhanced & {
-    padding-bottom: 100vh;
-    margin-bottom: -100vh;
-  }
-}
-
-.cover__image__mask {
-  .enhanced & {
-    @extend %cover-content;
-    background: rgba(0, 0, 0, 0.75);
-    opacity: 0;
-    transition: opacity 0.1s;
-    will-change: opacity;
-  }
 }
 
 .cover__content {
   @extend %cover-content;
-
-  .enhanced & {
-    height: 50%;
-  }
 }
 
 .cover__image {
@@ -77,3 +58,14 @@
   }
 
 }
+
+.cover__image__mask {
+  .enhanced & {
+    @extend %cover-content;
+    background: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    transition: opacity 0.1s;
+    will-change: opacity;
+  }
+}
+

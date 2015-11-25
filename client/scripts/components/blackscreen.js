@@ -1,28 +1,41 @@
 'use strict';
 
-import fastdom from 'fastdom';
-import {addWatcher} from '../utils/scroll-watcher';
+import scrollMonitor from 'scrollMonitor';
+import {addWatcher, removeWatcher} from '../utils/scroll-watcher';
 
 class Blackscreen {
 
-  constructor(target) {
-    this.target = target;
-    this.watcherId = addWatcher(this.checkPosition.bind(this));
+  constructor() {
+    this.blackscreen = document.querySelector('.js-blackscreen');
+    this.blackscreenBasis = document.querySelector('.js-blackscreen-basis');
 
-    this.checkPosition();
+    this.basisMonitor = (() => {
+      let monitor = scrollMonitor.create(this.blackscreenBasis);
+
+      monitor.enterViewport(this.enable.bind(this));
+      monitor.exitViewport(this.disable.bind(this));
+
+      return monitor;
+    })();
   }
 
-  checkPosition() {
-    let percent = (() => {
-      let ratio = (1 / window.innerHeight);
-      let percentage = (ratio * window.pageYOffset);
+  enable() {
+    this.watcherId = addWatcher(this.calculateOpacity.bind(this));
+  }
 
-      return Math.max(0, Math.min(percentage, 1));
-    })();
+  disable() {
+    if (this.watcherId) {
+      removeWatcher(this.watcherId);
+      this.watcherId = null;
+    }
+  }
 
-    fastdom.write(() => {
-      this.target.style.opacity = percent.toFixed(2);
-    });
+  calculateOpacity() {
+    let ratio = (1 / window.innerHeight);
+    let percent = (ratio * (window.pageYOffset + this.basisMonitor.height - this.basisMonitor.top));
+    let limited = Math.max(0, Math.min(percent, 1));
+
+    this.blackscreen.style.opacity = limited.toFixed(2);
   }
 
 }
