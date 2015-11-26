@@ -1,0 +1,27 @@
+.share {}
+
+.share__link {
+  text-decoration: none;
+}
+
+.share__icon {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  margin-right: 10px;
+  background: transparent no-repeat center;
+  background-size: contain;
+
+  .share--center & {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}
+
+.share__icon--twitter {
+  background-image: url('/images/ui/twitter-icon.svg');
+}
+
+.share__icon--facebook {
+  background-image: url('/images/ui/facebook-icon.svg');
+}
