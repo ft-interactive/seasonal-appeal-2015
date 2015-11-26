@@ -28,6 +28,7 @@
 }
 
 .masthead__tagline {
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   margin: 0;
   text-transform: uppercase;
   // Match logo size

@@ -49,14 +49,14 @@
 //   black     800
 
 $paragraph-spacing: (
-  'x-small':  12px,
+  'small':    12px,
   'medium':   16px,
-  'large':    20px
+  'large':    24px
 );
 
 $font-sizing: (
   5: (
-    'x-small':  ('font-size': 12px, 'line-height': 12px)
+    'x-small':  ('font-size': 14px, 'line-height': 14px)
   ),
   4: (
     'x-small':  ('font-size': 16px, 'line-height': 20px),

@@ -1,27 +1,65 @@
 .share {}
 
-.share__link {
-  text-decoration: none;
-}
-
 .share__icon {
+  position: relative;
   display: inline-block;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
-  background: transparent no-repeat center;
-  background-size: contain;
+  text-decoration: none;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/ui/social.svg') no-repeat;
+    background-size: auto 40px;
+    transition: opacity 0.5s;
+  }
+
+  &:before {
+    background-position: center top;
+    opacity: 1;
+  }
+
+  &:after {
+    background-position: center bottom;
+    opacity: 0;
+  }
+
+  &:hover:before {
+    opacity: 0;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
 
   .share--center & {
     margin-right: 5px;
     margin-left: 5px;
   }
+
 }
 
 .share__icon--twitter {
-  background-image: url('/images/ui/twitter-icon.svg');
+  &:before {
+    background-position: 0 0;
+  }
+  &:after {
+    background-position: 25% 0;
+  }
 }
 
 .share__icon--facebook {
-  background-image: url('/images/ui/facebook-icon.svg');
+  &:before {
+    background-position: 50% 0;
+  }
+  &:after {
+    background-position: 75% 0;
+  }
 }

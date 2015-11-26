@@ -1,13 +1,15 @@
 body {
-  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+  font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
 }
 
 .t--super {
   @include responsive-text-size('super');
+  font-kerning: normal;
 }
 
 .t--1 {
   @include responsive-text-size(1);
+  font-kerning: normal;
 }
 
 .t--2 {

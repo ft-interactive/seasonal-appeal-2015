@@ -17,6 +17,10 @@ class Blackscreen {
 
       return monitor;
     })();
+
+    if (this.basisMonitor.isAboveViewport) {
+      this.calculateOpacity();
+    }
   }
 
   enable() {

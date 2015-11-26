@@ -4,23 +4,23 @@
   .enhanced & {
     position: fixed;
     top: 0;
-    right: layout-margin('right', 'small') / 2;
+    right: layout-padding('right', 'small') / 2;
     z-index: 10;
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s;
     will-change: opacity;
 
-    &.is-active {
-      opacity: 1;
-    }
-
     @include mq('medium') {
       display: table;
     }
 
     @include mq('large') {
-      right: layout-margin('right', 'large') / 2;
+      right: layout-padding('right', 'large') / 2;
+    }
+
+    &.is-active {
+      opacity: 1;
     }
   }
 }

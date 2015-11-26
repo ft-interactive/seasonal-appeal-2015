@@ -18,3 +18,13 @@
 
   @warn "Breakpoint '#{$breakpoint-name}' for text size '#{$text-size}' was not found";
 }
+
+@function paragraph-spacing($size: 'medium') {
+  $value: map-get($paragraph-spacing, $size);
+
+  @if $value {
+    @return $value;
+  }
+
+  @warn "Paragraph spacing '#{$size}' does not exist in $paragraph-spacing";
+}

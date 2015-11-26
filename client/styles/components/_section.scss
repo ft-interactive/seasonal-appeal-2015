@@ -22,15 +22,44 @@
   @extend %layout-padding;
 }
 
-.section__share {}
-
 .section__content {
-  font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
+  margin-bottom: layout-margin('bottom', 'large');
+
+  p,
+  footer,
+  blockquote {
+    margin: paragraph-spacing('medium') 0 0;
+
+    @include mq('medium') {
+      margin-top: paragraph-spacing('large');
+    }
+  }
 }
 
 .section__heading {}
 
-.section__cta {}
+.section__cta {
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  transition: text-indent 0.5s;
+
+  &:before {
+    content: '';
+    position: relative;
+    top: 0.2em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url('/images/ui/red-arrow.svg') no-repeat left center;
+    transition: margin 0.5s;
+  }
+
+  &:hover:before {
+    margin-right: 0.5em;
+  }
+}
 
 .section--introduction {
   @extend %cover;
@@ -55,6 +84,8 @@
 
 .section--story {
   .section__wrapper {
+    position: relative;
+    z-index: 1;
     outline: 20px solid;
   }
 }

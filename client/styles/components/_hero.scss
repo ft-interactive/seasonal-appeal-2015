@@ -1,3 +1,4 @@
+
 .hero {
   @extend %layout-padding;
   position: absolute;
@@ -22,21 +23,17 @@
   }
 
   > * {
-    margin: 0 0 12px;
+    margin: 0 0 paragraph-spacing('small');
 
     @include mq('medium') {
-      margin-bottom: 16px;
+      margin-bottom: paragraph-spacing('medium');
     }
   }
 }
 
 .hero__heading {
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   text-transform: uppercase;
-}
-
-.hero__subtitle,
-.hero__credit {
-  font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
 }
 
 .hero__subtitle {}

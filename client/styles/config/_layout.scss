@@ -5,7 +5,7 @@ $layout-margin: (
 );
 
 $layout-padding: (
-  'small':  20px,
-  'medium': 40px,
-  'large':  60px
+  'small':  20px 20px 40px,
+  'medium': 40px 40px 60px,
+  'large':  60px 60px 80px
 );

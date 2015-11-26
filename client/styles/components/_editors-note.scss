@@ -1,0 +1,29 @@
+.editors-note {
+  @extend %layout-padding;
+  text-align: center;
+  background: oColorsGetPaletteColor('pink-tint2');
+  color: oColorsGetPaletteColor('pink-tint5');
+}
+
+.editors-note__avatar {}
+
+.editors-note__avatar__image {
+  display: block;
+  margin: 0 auto layout-margin('bottom', 'small');
+  border-radius: 100%;
+}
+
+.editors-note__avatar__caption {
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+  text-transform: uppercase;
+}
+
+.editors-note__heading {
+  margin: paragraph-spacing('medium') 0 0;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.editors-note__heading__link {
+  color: inherit;
+}
