@@ -9,9 +9,13 @@ class Pagination {
 
   constructor() {
     this.pagination = document.querySelector('.js-pagination');
-    this.paginationLinks = this.pagination.querySelectorAll('.js-pagination-link');
+    this.paginationLinks = document.querySelectorAll('.js-pagination-link');
     this.main = document.querySelector('.js-main');
-    this.mainSections = Array.prototype.map.call(this.paginationLinks, link => document.querySelector(link.hash));
+    this.mainSections = (
+      Array.prototype.map.call(this.paginationLinks, link => {
+        return document.querySelector(link.hash);
+      })
+    );
 
     this.mainMonitor = (() => {
       let monitor = scrollMonitor.create(this.main, {
@@ -25,17 +29,19 @@ class Pagination {
       return monitor;
     })();
 
-    this.mainSectionsMonitors = Array.prototype.map.call(this.mainSections, (section, index) => {
-      let monitor = scrollMonitor.create(section, {
-        bottom: -200,
-        top: -200
-      });
+    this.mainSectionsMonitors = (
+      Array.prototype.map.call(this.mainSections, (section, index) => {
+        let monitor = scrollMonitor.create(section, {
+          bottom: -200,
+          top: -200
+        });
 
-      monitor.enterViewport(this.activateLink.bind(this, index));
-      monitor.exitViewport(this.deactivateLink.bind(this, index));
+        monitor.enterViewport(this.activateLink.bind(this, index));
+        monitor.exitViewport(this.deactivateLink.bind(this, index));
 
-      return monitor;
-    });
+        return monitor;
+      })
+    );
   }
 
   checkIfEnabled() {

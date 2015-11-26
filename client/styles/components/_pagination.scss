@@ -4,7 +4,7 @@
   .enhanced & {
     position: fixed;
     top: 0;
-    right: layout-margin('right');
+    right: layout-margin('right', 'small') / 2;
     z-index: 10;
     height: 100%;
     opacity: 0;
@@ -17,6 +17,10 @@
 
     @include mq('medium') {
       display: table;
+    }
+
+    @include mq('large') {
+      right: layout-margin('right', 'large') / 2;
     }
   }
 }

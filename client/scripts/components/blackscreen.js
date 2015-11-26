@@ -32,8 +32,8 @@ class Blackscreen {
 
   calculateOpacity() {
     let ratio = (1 / window.innerHeight);
-    let percent = (ratio * (window.pageYOffset + this.basisMonitor.height - this.basisMonitor.top));
-    let limited = Math.max(0, Math.min(percent, 1));
+    let percent = (window.pageYOffset + this.basisMonitor.height - this.basisMonitor.top);
+    let limited = Math.max(0, Math.min(ratio * percent, 1));
 
     this.blackscreen.style.opacity = limited.toFixed(2);
   }

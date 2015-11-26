@@ -9,3 +9,4 @@ rules:
   curly: 0
   comma-dangle: 0
   no-inline-comments: 0
+  no-new: 0

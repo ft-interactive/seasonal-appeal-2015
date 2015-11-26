@@ -1,6 +1,35 @@
+@mixin cover-image($name) {
+  background: center top no-repeat;
+  background-size: cover;
+
+  .core & {
+    background-image: url('/images/d-#{$name}-960.jpg');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/d-#{$name}-960.jpg', sizingMethod='scale')";
+  }
+
+  .enhanced & {
+    @include mq($until: 'medium', $and: '(orientation: portrait)') {
+      background-image: url('/images/m-#{$name}-640.jpg');
+    }
+
+    @include mq($until: 'medium', $and: '(orientation: landscape)') {
+      background-image: url('/images/d-#{$name}-960.jpg');
+    }
+
+    // Background texture only
+    @include mq($from: 'medium', $and: '(orientation: portrait)') {
+      background-image: url('/images/m-#{$name}-1050.jpg');
+    }
+
+    @include mq($from: 'medium', $and: '(orientation: landscape)') {
+      background-image: url('/images/d-#{$name}-1600.jpg');
+    }
+  }
+}
+
 %cover {
-  position: relative;
-  height: 640px;
+  min-height: 500px;
+  height: 100%;
   height: 100vh;
 }
 
@@ -10,6 +39,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .cover {
@@ -21,40 +51,20 @@
 }
 
 .cover__image {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  // Allow for browser chrome
-  height: calc(100% + 60px);
-  background: center top no-repeat;
-  // container size may change if browser chrome is shown/hidden =(
-  background-size: cover;
-
-  // image-set() isn't widely available yet
-  @include mq($until: 'large', $and: '(orientation: portrait)') {
-    background-image: url('/images/hero-portrait-480.jpg');
-  }
-
-  @include mq($from: 'medium', $and: '(orientation: portrait)') {
-    background-image: url('/images/hero-portrait-960.jpg');
-  }
-
-  @include mq($until: 'medium', $and: '(orientation: landscape)') {
-    background-image: url('/images/hero-landscape-960.jpg');
-  }
-
-  @include mq($from: 'medium', $and: '(orientation: landscape)') {
-    background-image: url('/images/hero-landscape-1600.jpg');
-  }
-
-  .core & {
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/hero-landscape-960.jpg', sizingMethod='scale')";
-  }
+  @extend %cover-content;
+  @include cover-image('hero');
 
   .enhanced & {
-    // No background-attachment: fixed on iOS
+    // No easy background-attachment: fixed on iOS
     position: fixed;
+    z-index: -1;
+    // Viewport size changes when browser chrome moves in/out of view.
+    // therefore a % based height would mean extra reflows.
+    height: 100vh;
+    // Forcing hardware acceleration means this won't get re-painted all the
+    // time. This even extends below the viewport so when the browser chrome
+    // is hidden we don't get ugly gaps that need to be painted.
+    transform: translate3d(0, 0, 0);
   }
 
 }
