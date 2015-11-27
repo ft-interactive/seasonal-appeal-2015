@@ -1,11 +1,4 @@
-
 .hero {
-  @extend %layout-padding;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
   color: #ffffff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
 

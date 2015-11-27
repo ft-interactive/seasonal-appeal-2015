@@ -10,7 +10,7 @@ class Pagination {
   constructor() {
     this.pagination = document.querySelector('.js-pagination');
     this.paginationLinks = document.querySelectorAll('.js-pagination-link');
-    this.main = document.querySelector('.js-main');
+    this.main = document.querySelector('.js-pagination-basis');
     this.mainSections = (
       Array.prototype.map.call(this.paginationLinks, link => document.querySelector(link.hash))
     );

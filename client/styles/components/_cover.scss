@@ -3,43 +3,45 @@
   background-size: cover;
 
   .core & {
-    background-image: url('/images/d-#{$name}-960.jpg');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/d-#{$name}-960.jpg', sizingMethod='scale')";
+    background-image: url('../images/d-#{$name}-960.jpg');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/d-#{$name}-960.jpg', sizingMethod='scale')";
   }
 
   .enhanced & {
     @include mq($until: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('/images/m-#{$name}-640.jpg');
+      background-image: url('../images/m-#{$name}-640.jpg');
     }
 
     @include mq($until: 'medium', $and: '(orientation: landscape)') {
-      background-image: url('/images/d-#{$name}-960.jpg');
+      background-image: url('../images/d-#{$name}-960.jpg');
     }
 
     // Background texture only
     @include mq($from: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('/images/m-#{$name}-1050.jpg');
+      background-image: url('../images/m-#{$name}-1050.jpg');
     }
 
     @include mq($from: 'medium', $and: '(orientation: landscape)') {
-      background-image: url('/images/d-#{$name}-1600.jpg');
+      background-image: url('../images/d-#{$name}-1600.jpg');
     }
   }
 }
 
 %cover {
-  min-height: 500px;
-  height: 100%;
-  height: 100vh;
+  position: relative;
+  min-height: 100%;
+
+  @media screen and (min-height: 480px) {
+    height: 100vh;
+  }
 }
 
-%cover-content {
+%cover-fill {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 
 .cover {
@@ -47,17 +49,24 @@
 }
 
 .cover__content {
-  @extend %cover-content;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.cover__content__wrapper {
+  @extend %layout-padding;
+  display: table-cell;
 }
 
 .cover__image {
-  @extend %cover-content;
+  @extend %cover-fill;
   @include cover-image('hero');
+  z-index: -1;
 
   .enhanced & {
     // No easy background-attachment: fixed on iOS
     position: fixed;
-    z-index: -1;
     // Viewport size changes when browser chrome moves in/out of view.
     // therefore a % based height would mean extra reflows.
     height: 100vh;
@@ -71,7 +80,7 @@
 
 .cover__image__mask {
   .enhanced & {
-    @extend %cover-content;
+    @extend %cover-fill;
     background: rgba(#232322, 0.9);
     opacity: 0;
     transition: opacity 0.1s;
@@ -79,3 +88,27 @@
   }
 }
 
+.cover--outside {
+  color: #ffffff;
+
+  .cover__content__wrapper {
+    // Allow for abs. positioned masthead
+    padding-top: 100px;
+    vertical-align: bottom;
+  }
+}
+
+.cover--inside {
+  color: #ffffff;
+  background: #333333;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
+
+  .enhanced & {
+    background: none;
+  }
+
+  .cover__content__wrapper {
+    vertical-align: middle;
+    text-align: center;
+  }
+}

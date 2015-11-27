@@ -18,23 +18,25 @@
     <!-- endbuild -->
     <!-- endsmoosh -->
 
+    <!--[if (gt IE 9) | (IEMobile)]><!-->
     <!-- build:css styles/main.css -->
-    <!--[if (gt IE 9) | (IEMobile)]><!--><link rel="stylesheet" href="styles/main.css"><!--<![endif]-->
+    <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <!--<![endif]-->
 
+    <!--[if (lte IE 9) & (!IEMobile)]>
     <!-- build:css styles/main-ie.css -->
-    <!--[if (lte IE 9) & (!IEMobile)]><link rel="stylesheet" href="styles/main-ie.css"><![endif]-->
+    <link rel="stylesheet" href="styles/main-ie.css">
     <!-- endbuild -->
+    <![endif]-->
   </head>
   <body>
 
-    <!-- cover -->
-    <header class="cover">
-
+    <!-- outside cover -->
+    <header class="cover cover--outside">
       <div class="cover__image">
         <div class="cover__image__mask js-blackscreen"></div>
       </div>
-
       <div class="cover__content">
 
         <!-- masthead -->
@@ -58,47 +60,50 @@
         </div>
         <!-- end masthead -->
 
-        <!-- hero -->
-        <div class="hero js-blackscreen-basis">
-          <div class="hero__content">
+        <div class="cover__content__wrapper">
 
-            <h1 class="hero__heading t--super">
-              Modern-day<br>
-              slavery
-            </h1>
-            <p class="hero__subtitle t--1">
-              How human trafficking<br>
-              spans the world
-            </p>
-            <p class="hero__credit t--4">
-              Illustrations by Michelle Thompson<br>
-              Cover photo by Steve McCurry/<abbr title="International Labour Organization">ILO</abbr>
-            </p>
+          <!-- hero -->
+          <div class="hero js-blackscreen-basis">
+            <div class="hero__content">
 
-            <div class="share share--center">
-              <p class="share__description u-hidden">
-                Share this page
+              <h1 class="hero__heading t--super">
+                Modern-day<br>
+                slavery
+              </h1>
+              <p class="hero__subtitle t--1">
+                How human trafficking<br>
+                spans the world
               </p>
-              <a
-                class="share__icon share__icon--twitter"
-                href="https://www.twitter.com/intent/tweet?url=&amp;text=">
-                <span class="u-hidden">Share on Twitter</span>
-              </a>
-              <a
-                class="share__icon share__icon--facebook"
-                href="https://www.facebook.com/sharer.php?u=&amp;text=">
-                <span class="u-hidden">Share on Facebook</span>
-              </a>
+              <p class="hero__credit t--4">
+                Illustrations by Michelle Thompson<br>
+                Cover photo by Steve McCurry/<abbr title="International Labour Organization">ILO</abbr>
+              </p>
+
+              <div class="share share--center">
+                <p class="share__description u-hidden">
+                  Share this page
+                </p>
+                <a
+                  class="share__icon share__icon--twitter"
+                  href="https://www.twitter.com/intent/tweet?url=&amp;text=">
+                  <span class="u-hidden">Share on Twitter</span>
+                </a>
+                <a
+                  class="share__icon share__icon--facebook"
+                  href="https://www.facebook.com/sharer.php?u=&amp;text=">
+                  <span class="u-hidden">Share on Facebook</span>
+                </a>
+              </div>
             </div>
+
           </div>
+          <!-- end hero -->
 
         </div>
-        <!-- end hero -->
 
       </div>
-
     </header>
-    <!-- end cover -->
+    <!-- end outside cover -->
 
     <!-- navigation -->
     <nav class="pagination js-pagination" role="navigation" aria-label="Page navigation">
@@ -138,13 +143,13 @@
     <!-- end navigation -->
 
     <!-- main content -->
-    <main class="main-content js-main" role="main">
+    <main class="main-content js-pagination-basis" role="main">
 
-      <!-- introduction -->
-      <section class="section section--introduction js-main-section" id="introduction">
-        <div class="section__wrapper">
+      <!-- inside cover -->
+      <section class="cover cover--inside" id="introduction">
+        <div class="cover__content">
+          <div class="cover__content__wrapper">
 
-          <div class="section__content">
             <div class="u-container">
               <h2 class="u-hidden">
                 Introduction
@@ -156,14 +161,14 @@
                 In these stories, FT reporters investigate the true scope of trafficking, from modern-day slaves making their way from Africa to Europe to kidnapped children in China.
               </p>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
-      <!-- end introduction -->
+      <!-- inside cover -->
 
       <!-- nigeria -->
-      <section class="section section--story section--nigeria js-main-section" id="nigeria">
+      <section class="section section--story section--nigeria" id="nigeria">
 
         <div class="section__cover js-lazyload"></div>
 
@@ -208,7 +213,7 @@
       <!-- end nigeria -->
 
       <!-- china -->
-      <section class="section section--story section--china js-main-section" id="china">
+      <section class="section section--story section--china" id="china">
 
         <div class="section__cover js-lazyload"></div>
 
@@ -258,7 +263,7 @@
       <!-- end china -->
 
       <!-- brazil -->
-      <section class="section section--story section--brazil js-main-section" id="brazil">
+      <section class="section section--story section--brazil" id="brazil">
 
         <div class="section__cover js-lazyload"></div>
 
@@ -318,7 +323,7 @@
       <!-- end interstitial -->
 
       <!-- nepal -->
-      <section class="section section--story section--nepal js-main-section" id="nepal">
+      <section class="section section--story section--nepal" id="nepal">
 
         <div class="section__cover js-lazyload"></div>
 
@@ -363,7 +368,7 @@
       <!-- end nepal -->
 
       <!-- united-kingdom -->
-      <section class="section section--story section--united-kingdom js-main-section" id="united-kingdom">
+      <section class="section section--story section--united-kingdom" id="united-kingdom">
 
         <div class="section__cover js-lazyload"></div>
 
@@ -551,9 +556,11 @@
 
     <footer role="contentinfo"></footer>
 
+    <!-- smoosh -->
     <!-- build:js scripts/main.js -->
-    <script>if (cutsTheMustard) { addScript('scripts/main.bundle.js') }</script>
+    <script src="scripts/main.bundle.js"></script>
     <!-- endbuild -->
+    <!-- endsmoosh -->
 
   </body>
 </html>

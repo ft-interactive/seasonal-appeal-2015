@@ -120,7 +120,7 @@ gulp.task('html', done => {
     .on('end', () => {
       gulp.src('dist/**/*.html')
         .pipe($.smoosher())
-        .pipe($.minifyHtml())
+        .pipe($.minifyHtml({conditionals: true}))
         .pipe(gulp.dest('dist'))
         .on('end', done);
     });

@@ -1,5 +1,9 @@
 .masthead {
   @extend %layout-padding;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   white-space: nowrap;
   color: #ffffff;
 }

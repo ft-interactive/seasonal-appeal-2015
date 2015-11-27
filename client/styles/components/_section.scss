@@ -14,10 +14,6 @@
   }
 }
 
-.section__cover__content {
-  @extend %cover-content;
-}
-
 .section__wrapper {
   @extend %layout-padding;
 }
@@ -36,8 +32,6 @@
   }
 }
 
-.section__heading {}
-
 .section__cta {
   font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   text-transform: uppercase;
@@ -52,33 +46,12 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    background: url('/images/ui/red-arrow.svg') no-repeat left center;
+    background: url('../images/ui/red-arrow.svg') no-repeat left center;
     transition: margin 0.5s;
   }
 
   &:hover:before {
     margin-right: 0.5em;
-  }
-}
-
-.section--introduction {
-  @extend %cover;
-  background: #333333;
-
-  .enhanced & {
-    background: none;
-  }
-
-  .section__wrapper {
-    @extend %cover-content;
-    display: table;
-  }
-
-  .section__content {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75);
   }
 }
 
