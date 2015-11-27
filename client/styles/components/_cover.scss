@@ -25,7 +25,12 @@
     @include mq($from: 'medium', $and: '(orientation: landscape)') {
       background-image: url('../images/d-#{$name}-1600.jpg');
     }
+
+    &.js-lazy-load {
+      background-image: none !important;
+    }
   }
+
 }
 
 .cover {
