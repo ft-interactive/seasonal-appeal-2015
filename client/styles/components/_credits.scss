@@ -1,0 +1,16 @@
+.credits {
+  @extend %layout-padding;
+  @include oColorsFor('page', 'background');
+  padding-top: 0;
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+}
+
+.credits__heading {
+  margin: 0 0 paragraph-spacing('small');
+  text-transform: uppercase;
+  color: oColorsGetPaletteColor('grey-tint3');
+}
+
+.credits__item {
+  margin: 0 0 paragraph-spacing('small');
+}
