@@ -59,7 +59,11 @@
   .section__wrapper {
     position: relative;
     z-index: 1;
-    outline: 20px solid;
+    outline: 10px solid;
+
+    @include mq('medium') {
+      outline-width: 20px;
+    }
   }
 }
 

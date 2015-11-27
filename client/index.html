@@ -18,17 +18,17 @@
     <!-- endbuild -->
     <!-- endsmoosh -->
 
-    <!--[if (gt IE 9) | (IEMobile)]><!-->
+    <!--[if gt IE 9]><!-->
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <!--<![endif]-->
 
-    <!--[if (lte IE 9) & (!IEMobile)]>
     <!-- build:css styles/main-ie.css -->
+    <!--[if lte IE 9]>
     <link rel="stylesheet" href="styles/main-ie.css">
-    <!-- endbuild -->
     <![endif]-->
+    <!-- endbuild -->
   </head>
   <body>
 
@@ -419,21 +419,25 @@
     <aside role="complementary">
 
       <section class="editors-note">
-        <div class="u-container">
-          <figure class="editors-note__avatar">
+        <a class="editors-note__link" href="http://www.ft.com/">
+          <div class="editors-note__wrapper">
             <img
-              class="editors-note__avatar__image"
-              src="http://placehold.it/200x200"
+              class="editors-note__avatar"
+              width="160"
+              height="160"
+              src="http://placehold.it/160x160"
               alt="Photo of Lionel Barber">
-            <figcaption class="editors-note__avatar__caption t--4">
-              Lionel Barber, Editor of the Financial Times
-            </figcaption>
+            <div class="editors-note__content">
+              <h3 class="editors-note__heading t--1">
+                Letter from<wbr>
+                the editor
+              </h3>
+              <p class="editors-note__caption t--4">
+                Lionel Barber, Editor of the Financial Times
+              </p>
+            </div>
           </div>
-          <h3 class="editors-note__heading t--1">
-            <a class="editors-note__heading__link" href="http://www.ft.com/">Letter from<wbr>
-            the editor</a>
-          </h3>
-        </div>
+        </a>
       </section>
 
       <!-- story grid -->

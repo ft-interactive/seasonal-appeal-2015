@@ -15,7 +15,7 @@
 .story-grid__layout {
   overflow: hidden;
 
-  @include mq('small') {
+  @include mq('medium') {
     margin-left: layout-margin('left', 'small') * -1;
   }
 }
@@ -23,7 +23,7 @@
 .story-grid__column {
   box-sizing: border-box;
 
-  @include mq('small') {
+  @include mq('medium') {
     float: left;
     width: 50%;
     padding-left: layout-margin('left', 'small');
