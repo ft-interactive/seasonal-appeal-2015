@@ -28,11 +28,8 @@ if (cutsTheMustard) {
   document.documentElement.className = (
     document.documentElement.className.replace(/\bcore\b/g, 'enhanced')
   );
-}
 
-// add a polyfill.io script.
-// see polyfill.io for how to add non-default polyfills to this.
-// Note: you may also want to add this conditionally - a basic one for non-CTM
-// browsers (just to get basics like the HTML5 Shiv), and a special one (with
-// things like Promise) for CTM browsers.
-addScript('https://cdn.polyfill.io/v1/polyfill.min.js');
+  addScript('https://cdn.polyfill.io/v1/polyfill.min.js');
+} else {
+  addScript('https://cdn.polyfill.io/v1/polyfill.min.js?features=~html5-elements');
+}

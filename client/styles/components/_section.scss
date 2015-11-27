@@ -19,10 +19,9 @@
 }
 
 .section__content {
-  margin-bottom: layout-margin('bottom', 'large');
+  margin-bottom: layout-margin('bottom', 'medium');
 
   p,
-  footer,
   blockquote {
     margin: paragraph-spacing('medium') 0 0;
 
@@ -33,25 +32,21 @@
 }
 
 .section__cta {
+  display: inline-block;
+  // Match social.svg
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  padding: 8px 14px;
   font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   text-transform: uppercase;
   text-decoration: none;
+  letter-spacing: 2px;
   color: inherit;
-  transition: text-indent 0.5s;
+  transition: all 0.5s;
 
-  &:before {
-    content: '';
-    position: relative;
-    top: 0.2em;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background: url('../images/ui/red-arrow.svg') no-repeat left center;
-    transition: margin 0.5s;
-  }
-
-  &:hover:before {
-    margin-right: 0.5em;
+  &:hover {
+    color: #333333;
+    background: #ffffff;
+    border-color: #ffffff;
   }
 }
 

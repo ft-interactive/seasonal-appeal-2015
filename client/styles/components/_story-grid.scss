@@ -72,9 +72,9 @@
 }
 
 .story-grid__article__heading {
+  @include oColorsFor('page', 'text');
   margin: paragraph-spacing('small') 0;
   font-weight: normal;
-  color: oColorsGetPaletteColor('grey-tint5');
 }
 
 .story-grid__article__description {

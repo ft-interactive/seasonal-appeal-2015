@@ -9,5 +9,5 @@ body {
 }
 
 body {
-  @include oColorsFor(page, background);
+  @include oColorsFor('page', 'background' 'text');
 }
