@@ -2,27 +2,20 @@
 
 import scrollMonitor from 'scrollMonitor';
 
-class LazyLoad {
+export default function () {
+  let targets = document.querySelectorAll('.js-lazy-load');
 
-  constructor() {
-    this.targets = document.querySelectorAll('.js-lazy-load');
+  Array.prototype.map.call(targets, (target, index) => {
+    let monitor = scrollMonitor.create(target, {
+      top: 200,
+      bottom: 200
+    });
 
-    this.targetMonitors = (
-      Array.prototype.map.call(this.targets, (target, index) => {
-        let monitor = scrollMonitor.create(target, {
-          bottom: 200
-        });
+    monitor.enterViewport(() => {
+      targets[index].classList.remove('js-lazy-load');
+      monitor.destroy();
+    });
 
-        monitor.enterViewport(() => {
-          this.targets[index].classList.remove('js-lazy-load');
-          monitor.destroy();
-        });
-
-        return monitor;
-      })
-    );
-  }
-
+    return monitor;
+  });
 }
-
-export default LazyLoad;

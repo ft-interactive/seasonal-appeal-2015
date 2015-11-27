@@ -1,6 +1,5 @@
 .story-grid {
   @extend %layout-padding;
-  @include oColorsFor('page', 'background');
   padding-bottom: 0;
 }
 

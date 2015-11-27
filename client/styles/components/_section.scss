@@ -3,17 +3,6 @@
   color: #e7e8e7;
 }
 
-.section__cover {
-  padding-top: percentage((1 / 16) * 9);
-
-  @include mq($until: 'medium', $and: '(orientation: portrait)') {
-    padding-top: percentage((1 / 9) * 16);
-  }
-  @include mq($from: 'medium', $and: '(orientation: portrait)') {
-    padding-top: percentage((1 / 3) * 4);
-  }
-}
-
 .section__wrapper {
   @extend %layout-padding;
 }
@@ -33,8 +22,9 @@
 
 .section__cta {
   display: inline-block;
+  border: 2px solid #ffffff;
   // Match social.svg
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
   padding: 8px 14px;
   font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   text-transform: uppercase;
@@ -63,8 +53,8 @@
 }
 
 .section--nigeria {
-  .section__cover {
-    @include cover-image('nigeria');
+  .artwork {
+    @include artwork-fixed-ratio('nigeria');
   }
 
   .section__wrapper {
@@ -74,8 +64,8 @@
 }
 
 .section--china {
-  .section__cover {
-    @include cover-image('china');
+  .artwork {
+    @include artwork-fixed-ratio('china');
   }
 
   .section__wrapper {
@@ -85,8 +75,8 @@
 }
 
 .section--nepal {
-  .section__cover {
-    @include cover-image('nepal');
+  .artwork {
+    @include artwork-fixed-ratio('nepal');
   }
 
   .section__wrapper {
@@ -96,8 +86,8 @@
 }
 
 .section--united-kingdom {
-  .section__cover {
-    @include cover-image('uk');
+  .artwork {
+    @include artwork-fixed-ratio('uk');
   }
 
   .section__wrapper {
@@ -107,8 +97,8 @@
 }
 
 .section--brazil {
-  .section__cover {
-    @include cover-image('brazil');
+  .artwork {
+    @include artwork-fixed-ratio('brazil');
   }
 
   .section__wrapper {

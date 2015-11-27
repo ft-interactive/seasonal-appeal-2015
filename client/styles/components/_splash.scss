@@ -1,0 +1,38 @@
+.splash {
+  @include artwork-splash('hero');
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+
+  .enhanced & {
+    // No easy background-attachment: fixed on iOS
+    position: fixed;
+    // Viewport size changes when browser chrome moves in/out of view.
+    // therefore a % based height would mean extra reflows.
+    height: 100vh;
+    // Forcing hardware acceleration means this won't get re-painted all the
+    // time. This even extends below the viewport so when the browser chrome
+    // is hidden we don't get ugly gaps that need to be painted.
+    //
+    // HOWEVER: mobile devices can very quickly run out of GPU memory which
+    // causes a buttload of flickery hell. ¯\(°_o)/¯
+    // transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.splash__mask {
+  .enhanced & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#232322, 0.9);
+    opacity: 0;
+    will-change: opacity;
+  }
+}

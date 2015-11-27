@@ -10,13 +10,13 @@ class Pagination {
   constructor() {
     this.pagination = document.querySelector('.js-pagination');
     this.paginationLinks = document.querySelectorAll('.js-pagination-link');
-    this.main = document.querySelector('.js-pagination-basis');
-    this.mainSections = (
+    this.coverage = document.querySelector('.js-pagination-coverage');
+    this.section = (
       Array.prototype.map.call(this.paginationLinks, link => document.querySelector(link.hash))
     );
 
     this.mainMonitor = (() => {
-      let monitor = scrollMonitor.create(this.main, {
+      let monitor = scrollMonitor.create(this.coverage, {
         bottom: -100,
         top: -100
       });
@@ -27,8 +27,8 @@ class Pagination {
       return monitor;
     })();
 
-    this.mainSectionsMonitors = (
-      Array.prototype.map.call(this.mainSections, (section, index) => {
+    this.sectionMonitors = (
+      Array.prototype.map.call(this.section, (section, index) => {
         let monitor = scrollMonitor.create(section, {
           bottom: -200,
           top: -200

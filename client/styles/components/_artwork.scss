@@ -1,0 +1,13 @@
+.artwork {
+  padding-top: percentage((1 / 16) * 9);
+
+  @include mq($until: 'medium', $and: '(orientation: portrait)') {
+    padding-top: percentage((1 / 9) * 16);
+  }
+
+  .enhanced & {
+    &.js-lazy-load {
+      background-image: none !important;
+    }
+  }
+}
