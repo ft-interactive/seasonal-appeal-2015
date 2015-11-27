@@ -1,4 +1,4 @@
-@mixin artwork-setup($name) {
+@mixin responsive-background($name) {
   background: #555555 center top no-repeat;
   background-size: cover;
 
@@ -9,20 +9,12 @@
   }
 
   .enhanced & {
-    @include mq($until: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('../images/m-#{$name}-640.jpg');
-    }
     @include mq($until: 'medium', $and: '(orientation: landscape)') {
       background-image: url('../images/d-#{$name}-960.jpg');
     }
-  }
-
-}
-
-@mixin artwork-splash($name) {
-  @include artwork-setup($name);
-
-  .enhanced & {
+    @include mq($until: 'medium', $and: '(orientation: portrait)') {
+      background-image: url('../images/m-#{$name}-640.jpg');
+    }
     @include mq($from: 'medium', $and: '(orientation: portrait)') {
       background-image: url('../images/m-#{$name}-1050.jpg');
     }
@@ -34,12 +26,18 @@
 }
 
 @mixin artwork-fixed-ratio($name) {
-  @include artwork-setup($name);
+  @include __responsive-background($name);
 
   .enhanced & {
+    @include mq($until: 'medium') {
+      background-image: url('../images/d-#{$name}-960.jpg');
+    }
+    @include mq($until: 'medium', $and: '(orientation: portrait)') {
+      background-image: url('../images/m-#{$name}-640.jpg');
+    }
     @include mq($from: 'medium') {
-      background-image: url('../images/d-#{$name}-1600.jpg');
+      // Fall forward to parallax
+      display: none;
     }
   }
-
 }

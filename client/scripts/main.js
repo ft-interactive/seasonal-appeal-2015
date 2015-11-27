@@ -1,9 +1,9 @@
 'use strict';
 
-// import parallaxScenes from './components/parallax-scenes';
 import Blackscreen from './components/blackscreen';
 import Pagination from './components/pagination';
 import lazyLoad from './components/lazy-load';
+import parallax from './components/parallax';
 import splash from './components/splash';
 
 (() => {
@@ -16,7 +16,7 @@ import splash from './components/splash';
     new Pagination();
 
     splash();
+    parallax();
     lazyLoad();
-    // parallaxScenes();
   });
 })();

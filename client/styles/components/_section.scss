@@ -3,6 +3,38 @@
   color: #e7e8e7;
 }
 
+.section__artwork {
+  position: relative;
+  padding-top: percentage((1 / 16) * 9);
+
+  .enhanced & {
+
+    @include mq($until: 'medium', $and: '(orientation: portrait)') {
+      padding-top: percentage((1 / 9) * 16);
+    }
+
+    @include mq('medium') {
+      // Hand over to parallax
+      display: none !important;
+    }
+
+    &.js-lazy-load {
+      background-image: none !important;
+    }
+  }
+
+}
+
+.section__parallax {
+  display: none;
+
+  .enhanced & {
+    @include mq('medium') {
+      display: block;
+    }
+  }
+}
+
 .section__wrapper {
   @extend %layout-padding;
 }
@@ -53,8 +85,8 @@
 }
 
 .section--nigeria {
-  .artwork {
-    @include artwork-fixed-ratio('nigeria');
+  .section__artwork {
+    @include responsive-background('nigeria');
   }
 
   .section__wrapper {
@@ -64,8 +96,8 @@
 }
 
 .section--china {
-  .artwork {
-    @include artwork-fixed-ratio('china');
+  .section__artwork {
+    @include responsive-background('china');
   }
 
   .section__wrapper {
@@ -75,8 +107,8 @@
 }
 
 .section--nepal {
-  .artwork {
-    @include artwork-fixed-ratio('nepal');
+  .section__artwork {
+    @include responsive-background('nepal');
   }
 
   .section__wrapper {
@@ -86,8 +118,8 @@
 }
 
 .section--united-kingdom {
-  .artwork {
-    @include artwork-fixed-ratio('uk');
+  .section__artwork {
+    @include responsive-background('uk');
   }
 
   .section__wrapper {
@@ -97,8 +129,8 @@
 }
 
 .section--brazil {
-  .artwork {
-    @include artwork-fixed-ratio('brazil');
+  .section__artwork {
+    @include responsive-background('brazil');
   }
 
   .section__wrapper {

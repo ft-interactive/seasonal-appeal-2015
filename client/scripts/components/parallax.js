@@ -1,6 +1,7 @@
 'use strict';
 
-import Parallax from 'parallax/deploy/parallax';
+// Parallax doesn't export anything, it just gets attached to the window object.
+import 'parallax/deploy/parallax';
 import scrollMonitor from 'scrollMonitor';
 
 const options = {
@@ -8,21 +9,22 @@ const options = {
 };
 
 export default function () {
-  let scenes = document.querySelectorAll('.js-parallax-scene');
+  let scenes = document.querySelectorAll('.js-parallax');
 
   Array.prototype.map.call(scenes, scene => {
     let monitor = scrollMonitor.create(scene, {
-      bottom: 200,
-      top: 200
+      bottom: 100,
+      top: 100
     });
 
     let instance;
 
     monitor.enterViewport(() => {
+      // check visibility?
       if (instance) {
         instance.enable();
       } else {
-        instance = new Parallax(scene, options);
+        instance = new window.Parallax(scene, options);
       }
     });
 
