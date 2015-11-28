@@ -1,4 +1,18 @@
 .splash {
+  position: relative;
+}
+
+.splash__frame {
+  .enhanced & {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // This is deprecated but it still works =)
+    clip: rect(0 auto auto 0);
+  }
+}
+
+.splash__image {
   @include responsive-background('hero');
   position: absolute;
   top: 0;
@@ -10,16 +24,21 @@
   .enhanced & {
     // No easy background-attachment: fixed on iOS
     position: fixed;
-    // Viewport size changes when browser chrome moves in/out of view.
-    // therefore a % based height would mean extra reflows.
-    height: 100vh;
-    // Forcing hardware acceleration means this won't get re-painted all the
-    // time. This even extends below the viewport so when the browser chrome
-    // is hidden we don't get ugly gaps that need to be painted.
-    //
-    // HOWEVER: mobile devices can very quickly run out of GPU memory which
-    // causes a buttload of flickery hell. ¯\(°_o)/¯
-    // transform: translate3d(0, 0, 0);
+    // This is re-calculated when Chrome hides the URL bar on scroll.
+    // It's static in Safari.
+    // <https://code.google.com/p/chromium/issues/detail?id=428132
+    height: 100%;
+    // position: fixed is a performance killer so promote it to a GPU
+    // accelerated layer to prevent lots of re-painting on scroll.
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    // So switch it off on the iPad
+    // @media screen
+    //   and (min-device-width: 768px)
+    //   and (max-device-width: 1024px)
+    //   and (-webkit-min-device-pixel-ratio: 2) {
+    //   transform: none;
+    // }
   }
 
 }

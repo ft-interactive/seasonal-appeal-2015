@@ -13,8 +13,8 @@ export default function () {
 
   Array.prototype.map.call(scenes, scene => {
     let monitor = scrollMonitor.create(scene, {
-      bottom: 100,
-      top: 100
+      bottom: -100,
+      top: -100
     });
 
     let instance;

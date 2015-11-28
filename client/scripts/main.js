@@ -4,7 +4,6 @@ import Blackscreen from './components/blackscreen';
 import Pagination from './components/pagination';
 import lazyLoad from './components/lazy-load';
 import parallax from './components/parallax';
-import splash from './components/splash';
 
 (() => {
   if (!window.cutsTheMustard) {
@@ -15,7 +14,6 @@ import splash from './components/splash';
     new Blackscreen();
     new Pagination();
 
-    splash();
     parallax();
     lazyLoad();
   });

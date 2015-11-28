@@ -1,6 +1,9 @@
 .cover {
   position: relative;
   min-height: 100%;
+  // This is re-calculated when Chrome hides the URL bar on scroll.
+  // It's static in Safari.
+  // <https://code.google.com/p/chromium/issues/detail?id=428132
   height: 100vh;
 }
 
