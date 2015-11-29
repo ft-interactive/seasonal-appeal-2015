@@ -1,5 +1,5 @@
-@mixin responsive-background($name) {
-  background: #555555 center top no-repeat;
+@mixin responsive-background($name, $sizes: ('')) {
+  background: center top no-repeat;
   background-size: cover;
 
   .core & {
@@ -21,23 +21,10 @@
     @include mq($from: 'medium', $and: '(orientation: landscape)') {
       background-image: url('../images/d-#{$name}-1600.jpg');
     }
-  }
 
-}
-
-@mixin artwork-fixed-ratio($name) {
-  @include __responsive-background($name);
-
-  .enhanced & {
-    @include mq($until: 'medium') {
-      background-image: url('../images/d-#{$name}-960.jpg');
-    }
-    @include mq($until: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('../images/m-#{$name}-640.jpg');
-    }
-    @include mq($from: 'medium') {
-      // Fall forward to parallax
-      display: none;
+    &.js-lazy-load {
+      background-image: none !important;
     }
   }
+
 }

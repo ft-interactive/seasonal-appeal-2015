@@ -1,41 +1,53 @@
 'use strict';
 
-// Parallax doesn't export anything, it just gets attached to the window object.
+// Parallax module doesn't export anything, it just gets attached to the window
 import 'parallax/deploy/parallax';
 import scrollMonitor from 'scrollMonitor';
-
-const options = {
-  friction: 0.2
-};
+import loadImages from '../utils/load-images';
 
 export default function () {
   let scenes = document.querySelectorAll('.js-parallax');
 
   Array.prototype.map.call(scenes, scene => {
-    let monitor = scrollMonitor.create(scene, {
-      bottom: -100,
-      top: -100
-    });
-
     let instance;
 
+    const monitor = scrollMonitor.create(scene, {
+      bottom: 100,
+      top: 100
+    });
+
     monitor.enterViewport(() => {
-      // TODO: test if this triggers when element is display:none
+      // This can trigger even when the element is not visible (display:none)
+      if (!scene.offsetParent) {
+        return;
+      }
+
       if (instance) {
         instance.enable();
       } else {
-        instance = new window.Parallax(scene, options);
+        loadImages(scene.querySelectorAll('img[data-src]'), () => {
+          instance = new window.Parallax(scene);
+        });
       }
     });
 
     monitor.exitViewport(() => {
-      // TODO: test if this triggers when element is display:none
-      if (instance) {
+      if (instance && instance.enabled) {
         instance.disable();
       }
     });
 
-    // TODO: test for visibility change
+    // This covers resizing and orientation change in case the breakpoint
+    // 'medium' or larger becomes active.
+    monitor.stateChange(() => {
+      if (instance && instance.enabled && !scene.offsetParent) {
+        instance.disable();
+      }
+
+      if (instance && !instance.enabled && scene.offsetParent) {
+        instance.enable();
+      }
+    });
 
     return monitor;
   });

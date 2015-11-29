@@ -1,13 +1,5 @@
 .parallax {
-  display: none;
   position: relative;
-  padding-top: 56.25%;
-
-  .enhanced & {
-    @include mq('medium') {
-      display: block;
-    }
-  }
 }
 
 .parallax__canvas {
@@ -19,14 +11,13 @@
   overflow: hidden;
 }
 
-.parallax__layer {
-  // TODO
-  .js-lazy-load & {
-    display: none;
-  }
-}
-
 .parallax__image {
   width: 105%;
   margin: -1.40625% 0 0 -2.5%;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.is-loaded {
+    opacity: 1;
+  }
 }

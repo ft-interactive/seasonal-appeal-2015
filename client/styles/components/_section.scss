@@ -3,25 +3,22 @@
   color: #e7e8e7;
 }
 
-.section__artwork {
-  position: relative;
+.section__artwork,
+.section__parallax {
   padding-top: percentage((1 / 16) * 9);
+}
 
+.section__artwork {
   .enhanced & {
-    @include mq($until: 'medium', $and: '(orientation: portrait)') {
+    @include mq($and: '(orientation: portrait)') {
       padding-top: percentage((1 / 9) * 16);
     }
 
     @include mq('medium') {
-      // Hand over to parallax
+      // Hand over to .section__parallax
       display: none !important;
     }
-
-    &.js-lazy-load {
-      background-image: none !important;
-    }
   }
-
 }
 
 .section__parallax {
@@ -84,56 +81,91 @@
 }
 
 .section--nigeria {
+  $bgcolor: #051e39;
+
+  .section__artwork,
+  .section__parallax {
+    background-color: darken($bgcolor, 10%);
+  }
+
   .section__artwork {
     @include responsive-background('nigeria');
   }
 
   .section__wrapper {
-    outline-color: rgba(#051e39, 0.5);
-    background: #051e39;
+    outline-color: rgba($bgcolor, 0.5);
+    background: $bgcolor;
   }
 }
 
 .section--china {
+  $bgcolor: #29281e;
+
+  .section__artwork,
+  .section__parallax {
+    background-color: darken($bgcolor, 10%);
+  }
+
   .section__artwork {
     @include responsive-background('china');
   }
 
   .section__wrapper {
-    outline-color: rgba(#29281e, 0.5);
-    background: #29281e;
+    outline-color: rgba($bgcolor, 0.5);
+    background: $bgcolor;
   }
 }
 
 .section--nepal {
+  $bgcolor: #3e0d3e;
+
+  .section__artwork,
+  .section__parallax {
+    background-color: darken($bgcolor, 10%);
+  }
+
   .section__artwork {
     @include responsive-background('nepal');
   }
 
   .section__wrapper {
-    outline-color: rgba(#3e0d3e, 0.5);
-    background: #3e0d3e;
+    outline-color: rgba($bgcolor, 0.5);
+    background: $bgcolor;
   }
 }
 
 .section--united-kingdom {
+  $bgcolor: #358182;
+
+  .section__artwork,
+  .section__parallax {
+    background-color: darken($bgcolor, 10%);
+  }
+
   .section__artwork {
     @include responsive-background('uk');
   }
 
   .section__wrapper {
-    outline-color: rgba(#358182, 0.5);
-    background: #358182;
+    outline-color: rgba($bgcolor, 0.5);
+    background: $bgcolor;
   }
 }
 
 .section--brazil {
+  $bgcolor: #0b1e0f;
+
+  .section__artwork,
+  .section__parallax {
+    background-color: darken($bgcolor, 10%);
+  }
+
   .section__artwork {
     @include responsive-background('brazil');
   }
 
   .section__wrapper {
-    outline-color: rgba(#0b1e0f, 0.5);
-    background: #0b1e0f;
+    outline-color: rgba($bgcolor, 0.5);
+    background: $bgcolor;
   }
 }

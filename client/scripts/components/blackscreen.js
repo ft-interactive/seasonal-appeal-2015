@@ -9,7 +9,7 @@ export default function () {
 
   let watcherId;
 
-  let monitor = scrollMonitor.create(blackscreenBasis);
+  const monitor = scrollMonitor.create(blackscreenBasis);
 
   monitor.enterViewport(() => {
     watcherId = addWatcher(calculateOpacity);
@@ -27,9 +27,9 @@ export default function () {
   }
 
   function calculateOpacity() {
-    let ratio = (1 / window.innerHeight);
-    let percent = (window.pageYOffset + monitor.height - monitor.top);
-    let limited = Math.max(0, Math.min(ratio * percent, 1));
+    const ratio = (1 / window.innerHeight);
+    const percent = (window.pageYOffset + monitor.height - monitor.top);
+    const limited = Math.max(0, Math.min(ratio * percent, 1));
 
     blackscreen.style.opacity = limited.toFixed(2);
   }
