@@ -20,7 +20,7 @@ export default function () {
     let instance;
 
     monitor.enterViewport(() => {
-      // check visibility?
+      // TODO: test if this triggers when element is display:none
       if (instance) {
         instance.enable();
       } else {
@@ -29,10 +29,13 @@ export default function () {
     });
 
     monitor.exitViewport(() => {
+      // TODO: test if this triggers when element is display:none
       if (instance) {
         instance.disable();
       }
     });
+
+    // TODO: test for visibility change
 
     return monitor;
   });

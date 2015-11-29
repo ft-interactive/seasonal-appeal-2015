@@ -1,5 +1,8 @@
 .splash {
-  position: relative;
+  .enhanced & {
+    // The image should be positioned relative to window for core experience
+    position: relative;
+  }
 }
 
 .splash__frame {
@@ -9,6 +12,9 @@
     height: 100%;
     // This is deprecated but it still works =)
     clip: rect(0 auto auto 0);
+    // Create a bit of an overlap to reduce chances of revealing an unpainted
+    // area on scroll
+    padding-bottom: 60px;
   }
 }
 

@@ -5,73 +5,57 @@ import scrollMonitor from 'scrollMonitor';
 const targetActiveClass = 'is-active';
 const linkActiveClass = 'is-selected';
 
-class Pagination {
+export default function () {
+  const pagination = document.querySelector('.js-pagination');
+  const paginationLinks = document.querySelectorAll('.js-pagination-link');
+  const fragmentsArea = document.querySelector('.js-pagination-coverage');
+  const fragments = (
+    Array.prototype.map.call(paginationLinks, link => document.querySelector(link.hash))
+  );
 
-  constructor() {
-    this.pagination = document.querySelector('.js-pagination');
-    this.paginationLinks = document.querySelectorAll('.js-pagination-link');
-    this.coverage = document.querySelector('.js-pagination-coverage');
-    this.section = (
-      Array.prototype.map.call(this.paginationLinks, link => document.querySelector(link.hash))
-    );
+  // Show and hide pagination when coverage area is within viewport
+  const areaMonitor = scrollMonitor.create(fragmentsArea, {
+    bottom: -100,
+    top: -100
+  });
 
-    this.mainMonitor = (() => {
-      let monitor = scrollMonitor.create(this.coverage, {
-        bottom: -100,
-        top: -100
-      });
-
-      monitor.enterViewport(this.checkIfEnabled.bind(this));
-      monitor.exitViewport(this.checkIfDisabled.bind(this));
-
-      return monitor;
-    })();
-
-    this.sectionMonitors = (
-      Array.prototype.map.call(this.section, (section, index) => {
-        let monitor = scrollMonitor.create(section, {
-          bottom: -200,
-          top: -200
-        });
-
-        monitor.enterViewport(this.activateLink.bind(this, index));
-        monitor.exitViewport(this.deactivateLink.bind(this, index));
-
-        return monitor;
-      })
-    );
-  }
-
-  checkIfEnabled() {
-    if (!this.pagination.classList.contains(targetActiveClass)) {
-      this.pagination.classList.add(targetActiveClass);
+  areaMonitor.enterViewport(() => {
+    if (!pagination.classList.contains(targetActiveClass)) {
+      pagination.classList.add(targetActiveClass);
     }
-  }
+  });
 
-  checkIfDisabled() {
-    if (this.pagination.classList.contains(targetActiveClass)) {
-      this.pagination.classList.remove(targetActiveClass);
+  areaMonitor.exitViewport(() => {
+    if (pagination.classList.contains(targetActiveClass)) {
+      pagination.classList.remove(targetActiveClass);
     }
-  }
+  });
 
-  activateLink(index) {
-    this.paginationLinks[index].classList.add(linkActiveClass);
+  // Highlight associated link when fragment is within view
+  let activeIndex;
 
-    if (this.activeIndex) {
-      this.paginationLinks[this.activeIndex].classList.remove(linkActiveClass);
-    }
+  Array.prototype.map.call(fragments, (fragment, index) => {
+    const fragmentMonitor = scrollMonitor.create(fragment, {
+      bottom: -200,
+      top: -200
+    });
 
-    this.activeIndex = index;
-  }
+    fragmentMonitor.enterViewport(() => {
+      paginationLinks[index].classList.add(linkActiveClass);
 
-  deactivateLink(index) {
-    this.paginationLinks[index].classList.remove(linkActiveClass);
+      if (activeIndex) {
+        paginationLinks[activeIndex].classList.remove(linkActiveClass);
+      }
 
-    if (index === this.activeIndex) {
-      this.activeIndex = null;
-    }
-  }
+      activeIndex = index;
+    });
 
+    fragmentMonitor.exitViewport(() => {
+      paginationLinks[index].classList.remove(linkActiveClass);
+
+      if (index === activeIndex) {
+        activeIndex = null;
+      }
+    });
+  });
 }
-
-export default Pagination;

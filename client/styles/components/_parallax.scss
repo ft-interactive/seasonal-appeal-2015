@@ -1,6 +1,13 @@
 .parallax {
+  display: none;
   position: relative;
   padding-top: 56.25%;
+
+  .enhanced & {
+    @include mq('medium') {
+      display: block;
+    }
+  }
 }
 
 .parallax__canvas {

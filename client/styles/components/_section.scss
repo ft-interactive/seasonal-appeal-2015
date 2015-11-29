@@ -8,7 +8,6 @@
   padding-top: percentage((1 / 16) * 9);
 
   .enhanced & {
-
     @include mq($until: 'medium', $and: '(orientation: portrait)') {
       padding-top: percentage((1 / 9) * 16);
     }

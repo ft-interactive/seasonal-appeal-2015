@@ -3,45 +3,34 @@
 import scrollMonitor from 'scrollMonitor';
 import {addWatcher, removeWatcher} from '../utils/scroll-watcher';
 
-class Blackscreen {
+export default function () {
+  const blackscreen = document.querySelector('.js-blackscreen');
+  const blackscreenBasis = document.querySelector('.js-blackscreen-basis');
 
-  constructor() {
-    this.blackscreen = document.querySelector('.js-blackscreen');
-    this.blackscreenBasis = document.querySelector('.js-blackscreen-basis');
+  let watcherId;
 
-    this.basisMonitor = (() => {
-      let monitor = scrollMonitor.create(this.blackscreenBasis);
+  let monitor = scrollMonitor.create(blackscreenBasis);
 
-      monitor.enterViewport(this.enable.bind(this));
-      monitor.exitViewport(this.disable.bind(this));
+  monitor.enterViewport(() => {
+    watcherId = addWatcher(calculateOpacity);
+  });
 
-      return monitor;
-    })();
-
-    if (this.basisMonitor.isAboveViewport) {
-      this.calculateOpacity();
+  monitor.exitViewport(() => {
+    if (watcherId) {
+      removeWatcher(watcherId);
+      watcherId = null;
     }
+  });
+
+  if (monitor.isAboveViewport) {
+    calculateOpacity();
   }
 
-  enable() {
-    this.watcherId = addWatcher(this.calculateOpacity.bind(this));
-  }
-
-  disable() {
-    if (this.watcherId) {
-      removeWatcher(this.watcherId);
-      this.watcherId = null;
-    }
-  }
-
-  calculateOpacity() {
+  function calculateOpacity() {
     let ratio = (1 / window.innerHeight);
-    let percent = (window.pageYOffset + this.basisMonitor.height - this.basisMonitor.top);
+    let percent = (window.pageYOffset + monitor.height - monitor.top);
     let limited = Math.max(0, Math.min(ratio * percent, 1));
 
-    this.blackscreen.style.opacity = limited.toFixed(2);
+    blackscreen.style.opacity = limited.toFixed(2);
   }
-
 }
-
-export default Blackscreen;

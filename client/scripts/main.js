@@ -1,7 +1,7 @@
 'use strict';
 
-import Blackscreen from './components/blackscreen';
-import Pagination from './components/pagination';
+import blackscreen from './components/blackscreen';
+import pagination from './components/pagination';
 import lazyLoad from './components/lazy-load';
 import parallax from './components/parallax';
 
@@ -11,9 +11,8 @@ import parallax from './components/parallax';
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    new Blackscreen();
-    new Pagination();
-
+    blackscreen();
+    pagination();
     parallax();
     lazyLoad();
   });
