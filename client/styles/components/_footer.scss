@@ -14,9 +14,6 @@
     color: inherit;
   }
 
-  .share {
-    margin-top: layout-margin('top', 'small');
-  }
 }
 
 .footer__credits__heading {
@@ -27,4 +24,8 @@
   @include mq('medium') {
     margin-top: paragraph-spacing('large');
   }
+}
+
+.footer__share {
+  margin-top: layout-margin('top', 'small');
 }

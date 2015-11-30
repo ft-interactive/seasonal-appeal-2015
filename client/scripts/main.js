@@ -10,10 +10,8 @@ import parallax from './components/parallax';
     return;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    blackscreen();
-    pagination();
-    parallax();
-    lazyLoad();
-  });
+  blackscreen();
+  pagination();
+  parallax();
+  lazyLoad();
 })();

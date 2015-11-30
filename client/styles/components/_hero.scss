@@ -1,18 +1,5 @@
 .hero {
   position: relative;
-
-  .share {
-    margin-top: 16px;
-
-    @include mq('medium') {
-      margin-top: 25px;
-    }
-  }
-
-  .share__icon {
-    // Match text shadow
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.75));
-  }
 }
 
 .hero__content {
@@ -48,6 +35,16 @@
 
   @include mq('medium') {
     display: block;
+  }
+}
+
+.hero__share {
+  margin-top: 16px;
+  // Match text shadow
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.75));
+
+  @include mq('medium') {
+    margin-top: 25px;
   }
 }
 
