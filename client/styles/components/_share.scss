@@ -16,8 +16,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../images/ui/social.png') no-repeat;
-    background-image: linear-gradient(transparent, transparent), url('../images/ui/social.svg');
+    background-repeat: no-repeat;
     background-size: auto 40px;
     transition: opacity 0.5s;
   }
@@ -42,9 +41,22 @@
     opacity: 1;
   }
 
-  .share--center & {
-    margin-right: 5px;
-    margin-left: 5px;
+  .share--light & {
+    &:before,
+    &:after {
+      background-image: url('../images/ui/social-light.png');
+      background-image: linear-gradient(transparent, transparent),
+        url('../images/ui/social-light.svg');
+    }
+  }
+
+  .share--dark & {
+    &:before,
+    &:after {
+      background-image: url('../images/ui/social-dark.png');
+      background-image: linear-gradient(transparent, transparent),
+        url('../images/ui/social-dark.svg');
+    }
   }
 
 }

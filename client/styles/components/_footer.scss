@@ -13,6 +13,10 @@
   a {
     color: inherit;
   }
+
+  .share {
+    margin-top: layout-margin('top', 'small');
+  }
 }
 
 .footer__credits__heading {

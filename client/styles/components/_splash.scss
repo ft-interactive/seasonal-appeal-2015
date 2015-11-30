@@ -28,25 +28,18 @@
   width: 100%;
   height: 100%;
 
-
   .enhanced & {
     // No easy background-attachment: fixed on iOS
     position: fixed;
     // This is re-calculated when Chrome hides the URL bar on scroll.
     // It's static in Safari. It will be in Chrome, soon:
     // <https://code.google.com/p/chromium/issues/detail?id=428132
-    height: 100%;
+    //
+    // This at least means background size is not re-calculated when it does.
+    height: 100vh;
     // position: fixed is a performance killer so promote it to a GPU
     // accelerated layer to prevent lots of re-painting on scroll.
     transform: translate3d(0, 0, 0);
-
-    // But switch it off on the iPad because it just makes it worse
-    @media screen
-      and (min-device-width: 768px)
-      and (max-device-width: 1024px)
-      and (-webkit-min-device-pixel-ratio: 2) {
-      transform: none;
-    }
   }
 
 }
@@ -58,8 +51,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(#232322, 0.9);
-    opacity: 0;
-    will-change: opacity;
+
+    // For mobile where the combination of position: fixed and transitioning
+    // the opacity of the mask is a killer.
+    background: linear-gradient(
+      transparent 0%,
+      transparent 25%,
+      rgba(#232322, 0.75) 50%,
+      rgba(#232322, 0.90) 75%
+    );
+
+    // Use JS to enable blackscreen-ness
+    &.is-active {
+      background: rgba(#232322, 0.9);
+      opacity: 0;
+      will-change: opacity;
+    }
   }
 }

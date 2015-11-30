@@ -4,8 +4,15 @@ import scrollMonitor from 'scrollMonitor';
 import {addWatcher, removeWatcher} from '../utils/scroll-watcher';
 
 export default function () {
+  // I know this is a crap heuristic. Sorry.
+  if ('ontouchstart' in document.documentElement) {
+    return;
+  }
+
   const blackscreen = document.querySelector('.js-blackscreen');
   const blackscreenBasis = document.querySelector('.js-blackscreen-basis');
+
+  blackscreen.classList.add('is-active');
 
   let watcherId;
 
