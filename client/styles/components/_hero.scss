@@ -1,4 +1,6 @@
 .hero {
+  position: relative;
+
   .share {
     margin-top: 16px;
 
@@ -46,5 +48,47 @@
 
   @include mq('medium') {
     display: block;
+  }
+}
+
+@keyframes bobble {
+    0% {
+        transform: translateY(0);
+    }
+    65% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hero__cta {
+  display: none;
+
+  .enhanced & {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: bobble 2s infinite;
+
+    &::after {
+      content: '';
+      display: block;
+      height: 2em;
+      background: url('../images/ui/scroll-arrow.svg') no-repeat center bottom;
+      background-size: 50% auto;
+      // match text shadow
+      filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.75));
+    }
+
+    @include mq('medium') {
+      display: inline;
+    }
   }
 }
