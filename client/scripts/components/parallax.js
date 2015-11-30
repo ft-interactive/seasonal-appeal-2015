@@ -18,6 +18,7 @@ export default function () {
 
     monitor.enterViewport(() => {
       // This can trigger even when the element is not visible (display:none)
+      // because offsets = 0
       if (!scene.offsetParent) {
         return;
       }
