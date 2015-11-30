@@ -17,7 +17,10 @@
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: auto 40px;
+    background-size: auto 80px;
+    background-image: url('../images/ui/social.png');
+    background-image: linear-gradient(transparent, transparent),
+      url('../images/ui/social.svg');
     transition: opacity 0.5s;
   }
 
@@ -41,40 +44,44 @@
     opacity: 1;
   }
 
-  .share--light & {
-    &:before,
-    &:after {
-      background-image: url('../images/ui/social-light.png');
-      background-image: linear-gradient(transparent, transparent),
-        url('../images/ui/social-light.svg');
-    }
-  }
-
-  .share--dark & {
-    &:before,
-    &:after {
-      background-image: url('../images/ui/social-dark.png');
-      background-image: linear-gradient(transparent, transparent),
-        url('../images/ui/social-dark.svg');
-    }
-  }
-
 }
 
 .share__icon--facebook {
   &:before {
-    background-position: 0 0;
+    .share--light & {
+      background-position: 0 0;
+    }
+    .share--dark & {
+      background-position: 0 -40px;
+    }
   }
+
   &:after {
-    background-position: 25% 0;
+    .share--light & {
+      background-position: -50px 0;
+    }
+    .share--dark & {
+      background-position: -50px -40px;
+    }
   }
 }
 
 .share__icon--twitter {
   &:before {
-    background-position: 50% 0;
+    .share--light & {
+      background-position: -100px 0;
+    }
+    .share--dark & {
+      background-position: -100px -40px;
+    }
   }
+
   &:after {
-    background-position: 75% 0;
+    .share--light & {
+      background-position: -150px 0;
+    }
+    .share--dark & {
+      background-position: -150px -40px;
+    }
   }
 }

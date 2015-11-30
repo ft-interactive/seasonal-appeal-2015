@@ -5,6 +5,7 @@
     "n-normalize": "~1.0.1",
     "o-colors": ">=2.5.0 <4",
     "o-fonts": "~1.6.4",
+    "o-footer": "~4.1.0",
     "sass-mq": "~3.2.4",
     "scrollMonitor": "~1.0.12",
     "parallax": "~2.1.3"
