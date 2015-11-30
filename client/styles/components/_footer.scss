@@ -1,23 +1,26 @@
-.credits {
-  @extend %layout-padding;
-  padding-top: 0;
+.footer {
   font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
 }
 
-.credits__heading {
+.footer__credits {
+  @extend %layout-padding;
+  padding-top: 0;
+
+  p {
+    margin: 0 0 paragraph-spacing('small');
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.footer__credits__heading {
   margin: paragraph-spacing('small') 0;
   text-transform: uppercase;
   color: oColorsGetPaletteColor('grey-tint2');
 
   @include mq('medium') {
     margin-top: paragraph-spacing('large');
-  }
-}
-
-.credits__item {
-  margin: 0 0 paragraph-spacing('small');
-
-  a {
-    color: inherit;
   }
 }
