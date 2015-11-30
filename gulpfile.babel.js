@@ -49,7 +49,7 @@ function getBundlers(useWatchify) {
       execute: function () {
         var stream = this.b.bundle()
           .on('error', $.util.log.bind($.util, 'Browserify error'))
-          .pipe(source(entry.replace(/\.js$/, '.bundle.js')));
+          .pipe(source(entry.replace(/\.js$/, '.js')));
 
         // skip sourcemap creation if we're in 'serve' mode
         if (useWatchify) {
