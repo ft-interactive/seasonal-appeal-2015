@@ -18,8 +18,9 @@
   }
 }
 
-.splash__image {
+.splash__artwork {
   @include responsive-background('hero');
+  background-color: #555555;
   position: absolute;
   top: 0;
   left: 0;
@@ -27,24 +28,25 @@
   width: 100%;
   height: 100%;
 
+
   .enhanced & {
     // No easy background-attachment: fixed on iOS
     position: fixed;
     // This is re-calculated when Chrome hides the URL bar on scroll.
-    // It's static in Safari.
+    // It's static in Safari. It will be in Chrome, soon:
     // <https://code.google.com/p/chromium/issues/detail?id=428132
     height: 100%;
     // position: fixed is a performance killer so promote it to a GPU
     // accelerated layer to prevent lots of re-painting on scroll.
     transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    // So switch it off on the iPad
-    // @media screen
-    //   and (min-device-width: 768px)
-    //   and (max-device-width: 1024px)
-    //   and (-webkit-min-device-pixel-ratio: 2) {
-    //   transform: none;
-    // }
+
+    // But switch it off on the iPad because it just makes it worse
+    @media screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1024px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+      transform: none;
+    }
   }
 
 }

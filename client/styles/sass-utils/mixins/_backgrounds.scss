@@ -1,25 +1,26 @@
-@mixin responsive-background($name, $sizes: ('')) {
-  background: center top no-repeat;
+@mixin responsive-background($name) {
+  background-position: center top;
+  background-repeat: no-repeat;
   background-size: cover;
 
   .core & {
-    background-image: url('../images/d-#{$name}-960.jpg');
+    background-image: url('../images/artwork/d-#{$name}-960.jpg');
     // Image path is relative to the document, not the stylesheet
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/d-#{$name}-960.jpg', sizingMethod='scale')";
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/artwork/d-#{$name}-960.jpg', sizingMethod='scale')";
   }
 
   .enhanced & {
     @include mq($until: 'medium', $and: '(orientation: landscape)') {
-      background-image: url('../images/d-#{$name}-960.jpg');
+      background-image: url('../images/artwork/d-#{$name}-960.jpg');
     }
     @include mq($until: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('../images/m-#{$name}-640.jpg');
+      background-image: url('../images/artwork/m-#{$name}-640.jpg');
     }
     @include mq($from: 'medium', $and: '(orientation: portrait)') {
-      background-image: url('../images/m-#{$name}-1050.jpg');
+      background-image: url('../images/artwork/m-#{$name}-1050.jpg');
     }
     @include mq($from: 'medium', $and: '(orientation: landscape)') {
-      background-image: url('../images/d-#{$name}-1600.jpg');
+      background-image: url('../images/artwork/d-#{$name}-1600.jpg');
     }
 
     &.js-lazy-load {

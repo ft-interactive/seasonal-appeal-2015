@@ -1,4 +1,12 @@
 .hero {
+  .share {
+    margin-top: 16px;
+
+    @include mq('medium') {
+      margin-top: 25px;
+    }
+  }
+
   .share__icon {
     // Match text shadow
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.75));
@@ -18,6 +26,10 @@
     @include mq('medium') {
       margin-bottom: paragraph-spacing('medium');
     }
+
+    @include mq('large') {
+      margin-bottom: paragraph-spacing('large');
+    }
   }
 }
 
@@ -29,5 +41,10 @@
 .hero__subtitle {}
 
 .hero__credit {
+  display: none;
   font-style: italic;
+
+  @include mq('medium') {
+    display: block;
+  }
 }

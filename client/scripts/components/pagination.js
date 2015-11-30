@@ -41,11 +41,11 @@ export default function () {
     });
 
     fragmentMonitor.enterViewport(() => {
-      paginationLinks[index].classList.add(linkActiveClass);
-
       if (activeIndex) {
         paginationLinks[activeIndex].classList.remove(linkActiveClass);
       }
+
+      paginationLinks[index].classList.add(linkActiveClass);
 
       activeIndex = index;
     });

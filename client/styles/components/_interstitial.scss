@@ -1,8 +1,26 @@
 .interstitial {
+  @extend %layout-padding;
   background: #ffffff;
   text-align: center;
+  color: oColorsGetPaletteColor('grey-tint3');
 }
 
 .interstitial__heading {
+  display: inline-block;
+  margin: layout-margin('top', 'large') 0 layout-margin('bottom', 'small');
   font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
+  font-weight: normal;
+  text-decoration: none;
+
+  a {
+    color: inherit;
+  }
+}
+
+.interstitial__partner {
+  margin-top: paragraph-spacing('small');
+
+  @include mq('medium') {
+    float: right;
+  }
 }

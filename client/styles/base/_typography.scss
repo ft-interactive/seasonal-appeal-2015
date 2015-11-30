@@ -1,11 +1,18 @@
 body {
   font-family: oFontsGetFontFamilyWithFallbacks('FinancierDisplayWeb');
+  -webkit-font-smoothing: antialiased;
 }
 
 .t--super {
   @include responsive-text-size('super');
   font-kerning: normal;
 }
+
+.t--0 {
+  @include responsive-text-size(0);
+  font-kerning: normal;
+}
+
 
 .t--1 {
   @include responsive-text-size(1);
@@ -14,6 +21,7 @@ body {
 
 .t--2 {
   @include responsive-text-size(2);
+  font-kerning: normal;
 }
 
 .t--3 {
@@ -26,4 +34,8 @@ body {
 
 .t--5 {
   @include responsive-text-size(5);
+}
+
+.t--6 {
+  @include responsive-text-size(6);
 }

@@ -5,11 +5,19 @@
 }
 
 .credits__heading {
-  margin: 0 0 paragraph-spacing('small');
+  margin: paragraph-spacing('small') 0;
   text-transform: uppercase;
-  color: oColorsGetPaletteColor('grey-tint3');
+  color: oColorsGetPaletteColor('grey-tint2');
+
+  @include mq('medium') {
+    margin-top: paragraph-spacing('large');
+  }
 }
 
 .credits__item {
   margin: 0 0 paragraph-spacing('small');
+
+  a {
+    color: inherit;
+  }
 }

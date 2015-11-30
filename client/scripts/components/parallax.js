@@ -6,28 +6,32 @@ import scrollMonitor from 'scrollMonitor';
 import loadImages from '../utils/load-images';
 
 export default function () {
-  let scenes = document.querySelectorAll('.js-parallax');
+  const scenes = document.querySelectorAll('.js-parallax');
 
   Array.prototype.map.call(scenes, scene => {
     let instance;
+    let isLoading;
 
     const monitor = scrollMonitor.create(scene, {
-      bottom: 100,
-      top: 100
+      bottom: -100,
+      top: -100
     });
 
     monitor.enterViewport(() => {
       // This can trigger even when the element is not visible (display:none)
       // because offsets = 0
-      if (!scene.offsetParent) {
+      if (!scene.offsetParent || isLoading) {
         return;
       }
 
       if (instance) {
         instance.enable();
       } else {
+        isLoading = true;
+
         loadImages(scene.querySelectorAll('img[data-src]'), () => {
           instance = new window.Parallax(scene);
+          isLoading = false;
         });
       }
     });
@@ -37,19 +41,5 @@ export default function () {
         instance.disable();
       }
     });
-
-    // This covers resizing and orientation change in case the breakpoint
-    // 'medium' or larger becomes active.
-    monitor.stateChange(() => {
-      if (instance && instance.enabled && !scene.offsetParent) {
-        instance.disable();
-      }
-
-      if (instance && !instance.enabled && scene.offsetParent) {
-        instance.enable();
-      }
-    });
-
-    return monitor;
   });
 }

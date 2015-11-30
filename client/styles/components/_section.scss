@@ -1,6 +1,7 @@
 .section {
   position: relative;
   color: #e7e8e7;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .section__artwork,
@@ -36,15 +37,14 @@
 }
 
 .section__content {
-  margin-bottom: layout-margin('bottom', 'medium');
-
   p,
+  footer,
   blockquote {
-    margin: paragraph-spacing('medium') 0 0;
+    margin: paragraph-spacing('small') 0 0;
+  }
 
-    @include mq('medium') {
-      margin-top: paragraph-spacing('large');
-    }
+  blockquote > footer {
+    font-style: italic;
   }
 }
 
@@ -53,7 +53,8 @@
   border: 2px solid #ffffff;
   // Match social.svg
   border-color: rgba(255, 255, 255, 0.6);
-  padding: 8px 14px;
+  margin-top: 20px;
+  padding: 9px 14px;
   font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
   text-transform: uppercase;
   text-decoration: none;
@@ -61,7 +62,14 @@
   color: inherit;
   transition: all 0.5s;
 
-  &:hover {
+  @include mq('medium') {
+    margin-top: 25px;
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  &:hover,
+  &:focus {
     color: #333333;
     background: #ffffff;
     border-color: #ffffff;
@@ -72,11 +80,7 @@
   .section__wrapper {
     position: relative;
     z-index: 1;
-    outline: 10px solid;
-
-    @include mq('medium') {
-      outline-width: 20px;
-    }
+    outline: 20px solid;
   }
 }
 
@@ -85,7 +89,7 @@
 
   .section__artwork,
   .section__parallax {
-    background-color: darken($bgcolor, 10%);
+    background-color: darken($bgcolor, 5%);
   }
 
   .section__artwork {
@@ -103,7 +107,7 @@
 
   .section__artwork,
   .section__parallax {
-    background-color: darken($bgcolor, 10%);
+    background-color: darken($bgcolor, 5%);
   }
 
   .section__artwork {
@@ -121,7 +125,7 @@
 
   .section__artwork,
   .section__parallax {
-    background-color: darken($bgcolor, 10%);
+    background-color: darken($bgcolor, 5%);
   }
 
   .section__artwork {
@@ -139,7 +143,7 @@
 
   .section__artwork,
   .section__parallax {
-    background-color: darken($bgcolor, 10%);
+    background-color: darken($bgcolor, 5%);
   }
 
   .section__artwork {
@@ -157,7 +161,7 @@
 
   .section__artwork,
   .section__parallax {
-    background-color: darken($bgcolor, 10%);
+    background-color: darken($bgcolor, 5%);
   }
 
   .section__artwork {

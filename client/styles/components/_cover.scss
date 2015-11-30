@@ -13,6 +13,36 @@
   height: 100%;
 }
 
+@keyframes bobble {
+    0% {
+        transform: translateY(0);
+    }
+    35% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.cover__cta {
+  @extend %layout-padding;
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  // TODO
+  font-family: oFontsGetFontFamilyWithFallbacks('MetricWeb');
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: bobble 2s infinite;
+
+  @include mq('medium') {
+    display: block;
+  }
+}
+
 .cover__content__wrapper {
   @extend %layout-padding;
   display: table-cell;
@@ -42,5 +72,17 @@
   .cover__content__wrapper {
     vertical-align: middle;
     text-align: center;
+
+    p {
+      margin: 0 0 paragraph-spacing('small');
+
+      @include mq('medium') {
+        margin-bottom: paragraph-spacing('medium');
+      }
+
+      &:last-child {
+        margin-bottom: 10%;
+      }
+    }
   }
 }
