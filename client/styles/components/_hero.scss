@@ -49,15 +49,15 @@
 }
 
 @keyframes bobble {
-    0% {
-        transform: translateY(0);
-    }
-    65% {
-        transform: translateY(-5px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  65% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .hero__cta {
@@ -72,7 +72,8 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    animation: bobble 2s infinite;
+    // <http://easings.net/#easeInOutSine>
+    animation: bobble 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
 
     @include mq('medium') {
       display: inline;
