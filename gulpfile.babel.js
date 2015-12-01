@@ -104,6 +104,12 @@ gulp.task('copy', () => gulp.src(
   .pipe(gulp.dest('dist'))
 );
 
+gulp.task('copy-o-component-images', () => gulp.src([
+    'bower_components/o-*/**/*.{jpg,png,gif,svg}'
+  ], {dot: true})
+  .pipe(gulp.dest('dist/bower_components'))
+);
+
 // minifies all HTML, CSS and JS (.tmp & client => dist)
 gulp.task('html', done => {
   const assets = $.useref.assets({
@@ -213,7 +219,7 @@ gulp.task('build', done => {
 
   runSequence(
     ['clean', 'scsslint', 'eslint'],
-    ['scripts', 'styles', 'copy'],
+    ['scripts', 'styles', 'copy', 'copy-o-component-images'],
     ['html', 'images'],
   done);
 });
