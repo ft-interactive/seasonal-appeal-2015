@@ -1,4 +1,4 @@
-# [Seasonal Appeal 2015](https://ft-interactive.github.io/seasonal-appeal-2015)
+# [Seasonal Appeal 2015](https://ig.ft.com/sites/2015/seasonal-appeal/how-human-trafficking-spans-the-world/)
 
 [![Build Status][travis-image]][travis-url] [![Dependency Status][devdeps-image]][devdeps-url]
 
