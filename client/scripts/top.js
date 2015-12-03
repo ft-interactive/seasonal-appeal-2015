@@ -20,6 +20,8 @@ function addScript(src, async, defer) {
 var cutsTheMustard = (
   'querySelector' in document &&
   'addEventListener' in window &&
+  // Supported by most browsers except Safari 7 which is broken in many ways (VH units etc)
+  'performance' in window &&
   'requestAnimationFrame' in window
 );
 
