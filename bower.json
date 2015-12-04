@@ -9,8 +9,5 @@
     "sass-mq": "~3.2.4",
     "scrollMonitor": "~1.0.12",
     "parallax": "~2.1.3"
-  },
-  "resolutions": {
-    "o-grid": "~4.0.4"
   }
 }
