@@ -14,10 +14,10 @@ const $ = require('auto-plug')('gulp');
 
 const AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
-  'ff >= 30',
-  'chrome >= 34',
-  'iOS >= 7',
-  'Safari >= 7'
+  'ff >= 40',
+  'chrome >= 46',
+  'ios >= 7',
+  'safari >= 7'
 ];
 
 const DEPLOY_TARGET = ''; // e.g. 'features/YOUR-PROJECT-NAME'
