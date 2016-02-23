@@ -31,7 +31,7 @@ if (cutsTheMustard) {
     document.documentElement.className.replace(/\bcore\b/g, 'enhanced')
   );
 
-  addScript('https://cdn.polyfill.io/v1/polyfill.min.js');
+  addScript('https://cdn.polyfill.io/v2/polyfill.min.js');
 } else {
-  addScript('https://cdn.polyfill.io/v1/polyfill.min.js?features=~html5-elements');
+  addScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=~html5-elements');
 }
